@@ -1,5 +1,5 @@
 {
-  "name": "@openstax/assignment-component-library",
+  "name": "@openstax/assignment-components",
   "version": "0.0.0",
   "license": "MIT",
   "source": "src/index.ts",
