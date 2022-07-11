@@ -1,6 +1,5 @@
 import { Answer } from './Answer';
 import renderer from 'react-test-renderer';
-import React from 'react';
 
 describe('Answer', () => {
   const props = {
