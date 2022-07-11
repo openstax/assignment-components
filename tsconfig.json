@@ -8,7 +8,7 @@
     ],
     "baseUrl": "",
     "moduleResolution": "node",
-    "jsx": "react-jsx",
+    "jsx": "react",
     "jsxFactory": "",
     "jsxFragmentFactory": "",
     "sourceMap": true,

@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 
