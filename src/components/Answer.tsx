@@ -36,14 +36,12 @@ interface AnswerProps {
   keyControl: string | number | [];
   onKeyPress: () => void;
   children?: ReactNode;
-  migratingProps: {
-    correctIncorrectIcon?: any;
-    selectedCount: any;
-    radioBox?: any;
-    isCorrect: any;
-    isIncorrect: any;
-    feedback?: any;
-  };
+  correctIncorrectIcon?: ReactNode,
+  radioBox?: ReactNode;
+  selectedCount: any;
+  isCorrect: any;
+  isIncorrect: any;
+  feedback?: any;
 }
 
 export const Answer = (props: AnswerProps) => {
@@ -58,17 +56,13 @@ export const Answer = (props: AnswerProps) => {
     incorrectAnswerId,
     hasCorrectAnswer,
     answered_count,
-    children
-  } = props;
-  const {
+    children,
     feedback,
     isCorrect,
-    isIncorrect,
-  } = props.migratingProps;
+    isIncorrect
+  } = props;
 
-  let body;
-  //let feedback, onChange, radioBox, selectedCount, correctIncorrectIcon;
-  let selectedCount, correctIncorrectIcon;
+  let body, selectedCount, correctIncorrectIcon;
 
   const isChecked = isAnswerChecked(answer, chosenAnswer);
   const classes = cn('answers-answer', {
@@ -120,7 +114,7 @@ export const Answer = (props: AnswerProps) => {
     );
   }
   if (type === 'teacher-preview') {
-    correctIncorrectIcon = props.migratingProps.correctIncorrectIcon;
+    correctIncorrectIcon = props.correctIncorrectIcon;
   }
 
   if (type === 'teacher-review') {

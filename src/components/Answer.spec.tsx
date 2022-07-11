@@ -21,11 +21,9 @@ describe('Answer', () => {
     answered_count: 0,
     show_all_feedback: false,
     keyControl: '',
-    migratingProps: {
-      selectedCount: 1,
-      isIncorrect: false,
-      isCorrect: false
-    }
+    selectedCount: 1,
+    isIncorrect: false,
+    isCorrect: false
   };
 
   it('matches snapshot', () => {
