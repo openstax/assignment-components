@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Answer matches snapshot 1`] = `
+<div
+  className="openstax-answer"
+>
+  <section
+    className="answers-answer"
+    role="region"
+  >
+    <input
+      checked={false}
+      className="answer-input-box"
+      disabled={false}
+      id="1-option-1"
+      name="1-options"
+      onChange={[Function]}
+      type="radio"
+    />
+    <label
+      className="answer-label"
+      htmlFor="1-option-1"
+      onKeyPress={[Function]}
+    >
+      <span
+        className="answer-letter-wrapper"
+      >
+        <button
+          aria-label="Choice b:"
+          className="answer-letter"
+          data-test-id="answer-choice-b"
+          disabled={false}
+          onClick={[Function]}
+        >
+          b
+        </button>
+      </span>
+      <div
+        className="answer-answer"
+      >
+        <div
+          className="answer-content"
+        />
+      </div>
+    </label>
+  </section>
+</div>
+`;
+
+exports[`Answer renders with a custom renderer 1`] = `
+<div
+  className="openstax-answer"
+>
+  <section
+    className="answers-answer"
+    role="region"
+  >
+    <input
+      checked={false}
+      className="answer-input-box"
+      disabled={false}
+      id="1-option-1"
+      name="1-options"
+      onChange={[Function]}
+      type="radio"
+    />
+    <label
+      className="answer-label"
+      htmlFor="1-option-1"
+      onKeyPress={[Function]}
+    >
+      <span
+        className="answer-letter-wrapper"
+      >
+        <button
+          aria-label="Choice b:"
+          className="answer-letter"
+          data-test-id="answer-choice-b"
+          disabled={false}
+          onClick={[Function]}
+        >
+          b
+        </button>
+      </span>
+      <div
+        className="answer-answer"
+      >
+        <div
+          className="answer-content"
+        >
+          <div
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<ol>
+  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
+  <li>objects are too small to be seen with the naked eye, and</li>
+  <li>there is the involvement of only a weak gravitational field</li>
+</ol>
+",
+              }
+            }
+          />
+        </div>
+      </div>
+    </label>
+  </section>
+</div>
+`;
