@@ -3,6 +3,17 @@ import { ReactNode } from 'react';
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 
+const isAnswerCorrect = function(answer: answerType, correctAnswerId: idType) {
+  // if answer does not have an id, check the isCorrect property.
+  if (!(answer.id || correctAnswerId)) {
+    return answer.isCorrect;
+  }
+  let isCorrect = answer.id === correctAnswerId;
+  if (answer.correctness != null) { isCorrect = (answer.correctness === '1.0'); }
+
+  return isCorrect;
+};
+
 const isAnswerIncorrect = function(answer: answerType, incorrectAnswerId: idType) {
   // Allow multiple attempts to show incorrectness without the correct_answer_id
   return answer.id === incorrectAnswerId;
@@ -53,18 +64,26 @@ export const Answer = (props: AnswerProps) => {
     onKeyPress,
     qid,
     chosenAnswer,
+    correctAnswerId,
     incorrectAnswerId,
     hasCorrectAnswer,
     answered_count,
     children,
-    feedback,
-    isCorrect,
-    isIncorrect
+    feedback
   } = props;
 
-  let body, selectedCount, correctIncorrectIcon;
+  let body, selectedCount;
 
   const isChecked = isAnswerChecked(answer, chosenAnswer);
+  const isCorrect = isAnswerCorrect(answer, correctAnswerId);
+  const isIncorrect = isAnswerIncorrect(answer, incorrectAnswerId);
+
+  const correctIncorrectIcon = (
+    <div className="correct-incorrect">
+      {isCorrect && props.correctIncorrectIcon}
+    </div>
+  );
+
   const classes = cn('answers-answer', {
     'disabled': disabled,
     'answer-checked': isChecked,
@@ -113,9 +132,6 @@ export const Answer = (props: AnswerProps) => {
       </span>
     );
   }
-  if (type === 'teacher-preview') {
-    correctIncorrectIcon = props.correctIncorrectIcon;
-  }
 
   if (type === 'teacher-review') {
     body = (
@@ -138,7 +154,7 @@ export const Answer = (props: AnswerProps) => {
   } else {
     body = (
       <>
-        {correctIncorrectIcon}
+        {type === 'teacher-preview' && correctIncorrectIcon}
         {selectedCount}
         {radioBox}
         <label
