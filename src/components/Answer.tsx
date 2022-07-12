@@ -42,8 +42,8 @@ export const Answer = (props: AnswerProps) => {
   let body, selectedCount;
 
   const isChecked = isAnswerChecked(answer, chosenAnswer);
-  const isCorrect = correctAnswerId && isAnswerCorrect(answer, correctAnswerId) || false;
-  const isIncorrect = incorrectAnswerId && isAnswerIncorrect(answer, incorrectAnswerId) || false;
+  const isCorrect = isAnswerCorrect(answer, correctAnswerId);
+  const isIncorrect = isAnswerIncorrect(answer, incorrectAnswerId);
 
   const correctIncorrectIcon = (
     <div className="correct-incorrect">

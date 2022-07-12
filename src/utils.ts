@@ -4,7 +4,7 @@ export const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 
 const MAX_CORRECTNESS = '1.0';
 
-export const isAnswerCorrect = function(answer: answerType, correctAnswerId: idType) {
+export const isAnswerCorrect = function(answer: answerType, correctAnswerId?: idType) {
   // if answer does not have an id, check the isCorrect property.
   if (!(answer.id || correctAnswerId)) {
     return answer.isCorrect;
@@ -15,7 +15,7 @@ export const isAnswerCorrect = function(answer: answerType, correctAnswerId: idT
   return isCorrect;
 };
 
-export const isAnswerIncorrect = function(answer: answerType, incorrectAnswerId: idType) {
+export const isAnswerIncorrect = function(answer: answerType, incorrectAnswerId?: idType) {
   // Allow multiple attempts to show incorrectness without the correct_answer_id
   return answer.id === incorrectAnswerId;
 };
