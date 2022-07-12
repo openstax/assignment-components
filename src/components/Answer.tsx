@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { ReactNode } from 'react';
 import { ALPHABET, isAnswerChecked, isAnswerCorrect, isAnswerIncorrect } from '../utils';
-import { answerType, chosenAnswerType, idType } from 'types';
+import { answerType, chosenAnswerType, idType } from '../types';
 
 export interface AnswerProps {
   answer: answerType;

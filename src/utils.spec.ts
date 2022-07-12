@@ -1,5 +1,5 @@
 import { isAnswerChecked, isAnswerCorrect, isAnswerIncorrect } from './utils';
-import { answerType } from '../types';
+import { answerType } from './types';
 
 describe('isAnswerCorrect', () => {
   let answer: answerType;

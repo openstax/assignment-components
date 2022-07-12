@@ -1,4 +1,4 @@
-import { answerType, chosenAnswerType, idType } from "types";
+import { answerType, chosenAnswerType, idType } from '../src/types';
 
 export const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 
