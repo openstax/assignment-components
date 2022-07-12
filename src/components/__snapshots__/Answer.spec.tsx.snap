@@ -40,14 +40,16 @@ exports[`Answer matches snapshot 1`] = `
       >
         <div
           className="answer-content"
-        />
+        >
+          Some great content
+        </div>
       </div>
     </label>
   </section>
 </div>
 `;
 
-exports[`Answer renders with a custom renderer 1`] = `
+exports[`Answer renders children instead of content_html if set 1`] = `
 <div
   className="openstax-answer"
 >
@@ -100,6 +102,97 @@ exports[`Answer renders with a custom renderer 1`] = `
               }
             }
           />
+        </div>
+      </div>
+    </label>
+  </section>
+</div>
+`;
+
+exports[`Answer renders feedback 1`] = `
+<div
+  className="openstax-answer"
+>
+  <section
+    className="answers-answer"
+    role="region"
+  >
+    <input
+      checked={false}
+      className="answer-input-box"
+      disabled={false}
+      id="1-option-1"
+      name="1-options"
+      onChange={[Function]}
+      type="radio"
+    />
+    <label
+      className="answer-label"
+      htmlFor="1-option-1"
+      onKeyPress={[Function]}
+    >
+      <span
+        className="answer-letter-wrapper"
+      >
+        <button
+          aria-label="Choice b:"
+          className="answer-letter"
+          data-test-id="answer-choice-b"
+          disabled={false}
+          onClick={[Function]}
+        >
+          b
+        </button>
+      </span>
+      <div
+        className="answer-answer"
+      >
+        <div
+          className="answer-content"
+        >
+          Some great content
+        </div>
+        <div>
+          Insightful commentary
+        </div>
+      </div>
+    </label>
+  </section>
+</div>
+`;
+
+exports[`Answer renders incorrect answer 1`] = `
+<div
+  className="openstax-answer"
+>
+  <section
+    className="answers-answer answer-incorrect"
+    role="region"
+  >
+    <label
+      className="answer-label"
+      htmlFor="1-option-1"
+      onKeyPress={[Function]}
+    >
+      <span
+        className="answer-letter-wrapper"
+      >
+        <button
+          aria-label="Choice b(Incorrect Answer):"
+          className="answer-letter"
+          data-test-id="answer-choice-b"
+          disabled={true}
+        >
+          b
+        </button>
+      </span>
+      <div
+        className="answer-answer"
+      >
+        <div
+          className="answer-content"
+        >
+          Some great content
         </div>
       </div>
     </label>

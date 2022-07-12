@@ -43,16 +43,11 @@ interface AnswerProps {
   correctAnswerId: idType;
   incorrectAnswerId: idType;
   answered_count: number;
-  show_all_feedback: boolean;
-  keyControl: string | number | [];
   onKeyPress: () => void;
   children?: ReactNode;
   correctIncorrectIcon?: ReactNode,
+  feedback?: ReactNode;
   radioBox?: ReactNode;
-  selectedCount: any;
-  isCorrect: any;
-  isIncorrect: any;
-  feedback?: any;
 }
 
 export const Answer = (props: AnswerProps) => {
@@ -145,7 +140,7 @@ export const Answer = (props: AnswerProps) => {
 
         <div className="answer-answer">
           <div className="answer-content">
-            {children}
+            {children || answer.content_html}
           </div>
           {feedback}
         </div>
@@ -174,7 +169,7 @@ export const Answer = (props: AnswerProps) => {
           </span>
           <div className="answer-answer">
             <div className="answer-content">
-              {children}
+              {children || answer.content_html}
             </div>
             {feedback}
           </div>
