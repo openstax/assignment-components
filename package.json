@@ -14,7 +14,7 @@
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch --format modern,cjs",
-    "test": "jest",
+    "test": "jest --coverage .",
     "lint": "eslint src/*ts"
   },
   "peerDependencies": {

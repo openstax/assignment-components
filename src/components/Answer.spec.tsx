@@ -1,35 +1,35 @@
-import { Answer } from './Answer';
+import { Answer, AnswerProps } from './Answer';
 import renderer from 'react-test-renderer';
-import { findByTestId } from '../../test/utils';
 
 describe('Answer', () => {
-  const props = {
-    iter: 1,
-    answer: {
-      id: 1,
-      correctness: '',
-      isCorrect: true,
-      content_html: 'Some great content',
-    },
-    onChangeAnswer: () => jest.fn(),
-    disabled: false,
-    onKeyPress: () => jest.fn(),
-    qid: 1,
-    hasCorrectAnswer: false,
-    chosenAnswer: [''] ,
-    correctAnswerId: 2,
-    incorrectAnswerId: 0,
-    answered_count: 0,
-    show_all_feedback: false,
-    keyControl: '',
-    selectedCount: 1,
-    isIncorrect: false,
-    isCorrect: false
-  };
+  let props: AnswerProps;
+
+  beforeEach(() => {
+    props = {
+      type: 'student',
+      iter: 1,
+      answer: {
+        id: 1,
+        correctness: null,
+        isCorrect: true,
+        content_html: 'Some great content',
+        selected_count: 5
+      },
+      onChangeAnswer: () => jest.fn(),
+      disabled: false,
+      onKeyPress: () => jest.fn(),
+      qid: 1,
+      hasCorrectAnswer: false,
+      chosenAnswer: [''],
+      correctAnswerId: 2,
+      incorrectAnswerId: 0,
+      answered_count: 10,
+    };
+  });
 
   it('matches snapshot', () => {
      const tree = renderer.create(
-      <Answer type='student' {...props} />
+       <Answer {...props} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -43,9 +43,9 @@ describe('Answer', () => {
 </ol>
 `;
     const tree = renderer.create(
-       <Answer type='student' {...props}>
-         <div dangerouslySetInnerHTML={{ __html: childContent }}></div>
-       </Answer>
+      <Answer {...props}>
+        <div dangerouslySetInnerHTML={{ __html: childContent }}></div>
+      </Answer>
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -53,19 +53,45 @@ describe('Answer', () => {
   it('renders feedback', () => {
     const feedback = <div>Insightful commentary</div>;
     const tree = renderer.create(
-      <Answer type='student' {...props} feedback={feedback} />
+      <Answer {...props} feedback={feedback} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders incorrect answer', () => {
-    const instance = renderer.create(
-      <Answer type='student' {...props} incorrectAnswerId={props.answer.id} hasCorrectAnswer={true} />
-    );
-    const tree = instance.toJSON();
+  it('renders a correct answer', () => {
+    const tree = renderer.create(
+      <Answer {...props} correctAnswerId={props.answer.id} hasCorrectAnswer={true} disabled={true} />
+    ).toJSON();
     expect(tree).toMatchSnapshot();
-    expect(
-      findByTestId(instance.root, 'answer-choice-b').props
-    ).toMatchObject({ "aria-label": "Choice b(Incorrect Answer):" });
+  });
+
+  it('renders an incorrect answer', () => {
+    const tree = renderer.create(
+      <Answer {...props} incorrectAnswerId={props.answer.id} hasCorrectAnswer={true} />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders a checked answer', () => {
+    const tree = renderer.create(
+      <Answer {...props} chosenAnswer={[props.answer.id]} />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders teacher review', () => {
+    const tree = renderer.create(
+      <Answer {...props} type='teacher-review' />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+
+  it('renders teacher preview', () => {
+    props = {...props, correctAnswerId: props.answer.id, correctIncorrectIcon: <span>Iconic</span>};
+    const tree = renderer.create(
+      <Answer {...props} type='teacher-preview'  />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });

@@ -49,6 +49,133 @@ exports[`Answer matches snapshot 1`] = `
 </div>
 `;
 
+exports[`Answer renders a checked answer 1`] = `
+<div
+  className="openstax-answer"
+>
+  <section
+    className="answers-answer answer-checked"
+    role="region"
+  >
+    <input
+      checked={true}
+      className="answer-input-box"
+      disabled={false}
+      id="1-option-1"
+      name="1-options"
+      onChange={[Function]}
+      type="radio"
+    />
+    <label
+      className="answer-label"
+      htmlFor="1-option-1"
+      onKeyPress={[Function]}
+    >
+      <span
+        className="answer-letter-wrapper"
+      >
+        <button
+          aria-label="Selected Choice b:"
+          className="answer-letter"
+          data-test-id="answer-choice-b"
+          disabled={false}
+          onClick={[Function]}
+        >
+          b
+        </button>
+      </span>
+      <div
+        className="answer-answer"
+      >
+        <div
+          className="answer-content"
+        >
+          Some great content
+        </div>
+      </div>
+    </label>
+  </section>
+</div>
+`;
+
+exports[`Answer renders a correct answer 1`] = `
+<div
+  className="openstax-answer"
+>
+  <section
+    className="answers-answer disabled answer-correct"
+    role="region"
+  >
+    <label
+      className="answer-label"
+      htmlFor="1-option-1"
+      onKeyPress={[Function]}
+    >
+      <span
+        className="answer-letter-wrapper"
+      >
+        <button
+          aria-label="Choice b(Correct Answer):"
+          className="answer-letter"
+          data-test-id="answer-choice-b"
+          disabled={true}
+        >
+          b
+        </button>
+      </span>
+      <div
+        className="answer-answer"
+      >
+        <div
+          className="answer-content"
+        >
+          Some great content
+        </div>
+      </div>
+    </label>
+  </section>
+</div>
+`;
+
+exports[`Answer renders an incorrect answer 1`] = `
+<div
+  className="openstax-answer"
+>
+  <section
+    className="answers-answer answer-incorrect"
+    role="region"
+  >
+    <label
+      className="answer-label"
+      htmlFor="1-option-1"
+      onKeyPress={[Function]}
+    >
+      <span
+        className="answer-letter-wrapper"
+      >
+        <button
+          aria-label="Choice b(Incorrect Answer):"
+          className="answer-letter"
+          data-test-id="answer-choice-b"
+          disabled={true}
+        >
+          b
+        </button>
+      </span>
+      <div
+        className="answer-answer"
+      >
+        <div
+          className="answer-content"
+        >
+          Some great content
+        </div>
+      </div>
+    </label>
+  </section>
+</div>
+`;
+
 exports[`Answer renders children instead of content_html if set 1`] = `
 <div
   className="openstax-answer"
@@ -161,14 +288,21 @@ exports[`Answer renders feedback 1`] = `
 </div>
 `;
 
-exports[`Answer renders incorrect answer 1`] = `
+exports[`Answer renders teacher preview 1`] = `
 <div
   className="openstax-answer"
 >
   <section
-    className="answers-answer answer-incorrect"
+    className="answers-answer answer-correct"
     role="region"
   >
+    <div
+      className="correct-incorrect"
+    >
+      <span>
+        Iconic
+      </span>
+    </div>
     <label
       className="answer-label"
       htmlFor="1-option-1"
@@ -178,10 +312,10 @@ exports[`Answer renders incorrect answer 1`] = `
         className="answer-letter-wrapper"
       >
         <button
-          aria-label="Choice b(Incorrect Answer):"
+          aria-label="Choice b:"
           className="answer-letter"
           data-test-id="answer-choice-b"
-          disabled={true}
+          disabled={false}
         >
           b
         </button>
@@ -196,6 +330,46 @@ exports[`Answer renders incorrect answer 1`] = `
         </div>
       </div>
     </label>
+  </section>
+</div>
+`;
+
+exports[`Answer renders teacher review 1`] = `
+<div
+  className="openstax-answer"
+>
+  <section
+    className="answers-answer"
+    role="region"
+  >
+    <div
+      className="review-wrapper"
+    >
+      <div
+        className="review-count red"
+      >
+        <span
+          className="selected-count"
+          data-percent="50"
+        >
+          5
+        </span>
+        <span
+          className="letter red"
+        >
+          b
+        </span>
+      </div>
+      <div
+        className="answer-answer"
+      >
+        <div
+          className="answer-content"
+        >
+          Some great content
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 `;

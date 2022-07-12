@@ -1,37 +1,9 @@
 import cn from 'classnames';
 import { ReactNode } from 'react';
+import { ALPHABET, isAnswerChecked, isAnswerCorrect, isAnswerIncorrect } from '../utils';
+import { answerType, chosenAnswerType, idType } from 'types';
 
-const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
-
-const isAnswerCorrect = function(answer: answerType, correctAnswerId: idType) {
-  // if answer does not have an id, check the isCorrect property.
-  if (!(answer.id || correctAnswerId)) {
-    return answer.isCorrect;
-  }
-  let isCorrect = answer.id === correctAnswerId;
-  if (answer.correctness != null) { isCorrect = (answer.correctness === '1.0'); }
-
-  return isCorrect;
-};
-
-const isAnswerIncorrect = function(answer: answerType, incorrectAnswerId: idType) {
-  // Allow multiple attempts to show incorrectness without the correct_answer_id
-  return answer.id === incorrectAnswerId;
-};
-
-const isAnswerChecked = (answer: answerType, chosenAnswer: AnswerProps['chosenAnswer']) =>
-  Boolean((chosenAnswer || []).find( a => a == answer.id));
-
-type answerType = {
-  id: idType;
-  correctness: string;
-  isCorrect: boolean;
-  content_html: string;
-  selected_count?: number;
-};
-type idType = string | number;
-
-interface AnswerProps {
+export interface AnswerProps {
   answer: answerType;
   iter: number;
   qid: idType;
@@ -39,11 +11,11 @@ interface AnswerProps {
   hasCorrectAnswer: boolean;
   onChangeAnswer: () => void;
   disabled: boolean;
-  chosenAnswer: (string | null | undefined)[];
-  correctAnswerId: idType;
-  incorrectAnswerId: idType;
-  answered_count: number;
+  chosenAnswer: chosenAnswerType;
+  correctAnswerId?: idType;
+  incorrectAnswerId?: idType;
   onKeyPress: () => void;
+  answered_count?: number;
   children?: ReactNode;
   correctIncorrectIcon?: ReactNode,
   feedback?: ReactNode;
@@ -70,8 +42,8 @@ export const Answer = (props: AnswerProps) => {
   let body, selectedCount;
 
   const isChecked = isAnswerChecked(answer, chosenAnswer);
-  const isCorrect = isAnswerCorrect(answer, correctAnswerId);
-  const isIncorrect = isAnswerIncorrect(answer, incorrectAnswerId);
+  const isCorrect = correctAnswerId && isAnswerCorrect(answer, correctAnswerId) || false;
+  const isIncorrect = incorrectAnswerId && isAnswerIncorrect(answer, incorrectAnswerId) || false;
 
   const correctIncorrectIcon = (
     <div className="correct-incorrect">
@@ -83,7 +55,7 @@ export const Answer = (props: AnswerProps) => {
     'disabled': disabled,
     'answer-checked': isChecked,
     'answer-correct': isCorrect && type !== 'student-mpp',
-    'answer-incorrect': isAnswerIncorrect(answer, incorrectAnswerId),
+    'answer-incorrect': incorrectAnswerId && isAnswerIncorrect(answer, incorrectAnswerId),
   });
 
   let ariaLabel = `${isChecked ? 'Selected ' : ''}Choice ${ALPHABET[iter]}`;
@@ -116,8 +88,11 @@ export const Answer = (props: AnswerProps) => {
       />
     );
   }
-  if (type === 'teacher-review' && answer.selected_count) {
-    const percent = Math.round((answer.selected_count / answered_count) * 100) || 0;
+  if (type === 'teacher-review') {
+    let percent = 0;
+    if (answer.selected_count && answered_count) {
+      percent = Math.round((answer.selected_count / answered_count) * 100);
+    }
     selectedCount = (
       <span
         className="selected-count"
@@ -126,9 +101,7 @@ export const Answer = (props: AnswerProps) => {
         {answer.selected_count}
       </span>
     );
-  }
 
-  if (type === 'teacher-review') {
     body = (
       <div className="review-wrapper">
         <div className={cn('review-count', { 'green': isCorrect, 'red': !isCorrect })}>
