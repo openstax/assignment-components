@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnswersTable matches snapshot 1`] = `
+<div
+  className="answers-table"
+>
+  <div
+    className="openstax-answer"
+  >
+    <section
+      className="answers-answer answer-checked answer-correct"
+      role="region"
+    >
+      <label
+        className="answer-label"
+        htmlFor="1-option-0"
+      >
+        <span
+          className="answer-letter-wrapper"
+        >
+          <button
+            aria-label="Selected Choice a(Correct Answer):"
+            className="answer-letter"
+            data-test-id="answer-choice-a"
+            disabled={false}
+          >
+            a
+          </button>
+        </span>
+        <div
+          className="answer-answer"
+        >
+          <div
+            className="answer-content"
+          >
+            A
+          </div>
+        </div>
+      </label>
+    </section>
+  </div>
+  <div
+    className="openstax-answer"
+  >
+    <section
+      className="answers-answer answer-checked answer-correct"
+      role="region"
+    >
+      <label
+        className="answer-label"
+        htmlFor="1-option-1"
+      >
+        <span
+          className="answer-letter-wrapper"
+        >
+          <button
+            aria-label="Selected Choice b(Correct Answer):"
+            className="answer-letter"
+            data-test-id="answer-choice-b"
+            disabled={false}
+          >
+            b
+          </button>
+        </span>
+        <div
+          className="answer-answer"
+        >
+          <div
+            className="answer-content"
+          >
+            B
+          </div>
+        </div>
+      </label>
+    </section>
+  </div>
+</div>
+`;

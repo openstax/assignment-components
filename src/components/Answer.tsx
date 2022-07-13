@@ -15,7 +15,7 @@ export interface AnswerProps {
   chosenAnswer: chosenAnswerType;
   correctAnswerId?: idType;
   incorrectAnswerId?: idType;
-  onKeyPress: () => void;
+  onKeyPress?: () => void;
   answered_count?: number;
   children?: ReactNode;
   correctIncorrectIcon?: ReactNode,
@@ -130,7 +130,7 @@ export const Answer = (props: AnswerProps) => {
         {selectedCount}
         {radioBox}
         <label
-          onKeyPress={onKeyPress}
+          onKeyPress={onKeyPress} // @TODO: Change to onKeyDown?
           htmlFor={`${qid}-option-${iter}`}
           className="answer-label">
           <span className="answer-letter-wrapper">
