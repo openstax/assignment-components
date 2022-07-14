@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { ReactNode } from 'react';
 import { ALPHABET, isAnswerChecked, isAnswerCorrect, isAnswerIncorrect } from '../utils';
 import { answerType, chosenAnswerType, idType } from '../types';
+import styled from 'styled-components';
 
 export interface AnswerProps {
   answer: answerType;
@@ -21,6 +22,9 @@ export interface AnswerProps {
   feedback?: ReactNode;
   radioBox?: ReactNode;
 }
+
+const StyledAnswer = styled.div`
+`;
 
 export const Answer = (props: AnswerProps) => {
   const {
@@ -152,11 +156,11 @@ export const Answer = (props: AnswerProps) => {
   }
 
   return (
-    <div className="openstax-answer">
+    <StyledAnswer className="openstax-answer">
       <section role="region" className={classes}>
         {body}
       </section>
-    </div>
+    </StyledAnswer>
   );
 }
 Answer.displayName = 'OSAnswer';
