@@ -1,0 +1,230 @@
+import styled from 'styled-components';
+import { mixins } from '../theme';
+import { AnswersTable, AnswersTableProps } from './AnswersTable';
+
+const StyledQuestion = styled.div`
+&.openstax-question {
+  // .detailed-solution {
+  //     margin-bottom: 1rem;
+  //     .header {
+  //         display: inline;
+  //         float: left;
+  //         margin-right: 0.5rem;
+  //         color: #5e6062;
+  //         font-weight: bold;
+  //         flex-basis: 0;
+  //     }
+  //     .solution {
+  //         color: #6f6f6f;
+  //     }
+  // }
+
+  // img {
+  //   display: block;
+  //   margin: auto;
+  //   max-width: 100%;
+  // }
+
+  // .question-stem {
+  //   margin-bottom: 0;
+  // }
+
+  // .answers-table {
+  //   margin-bottom: 20px;
+  //   font-size: 17px;
+  //   line-height: 25px;
+  // }
+
+  // .instructions {
+  //   font-size: 1.4rem;
+  //   font-style: italic;
+  //   margin-top: 10px;
+  //   color: $openstax-neutral;
+  //   margin: 0;
+  //   i {
+  //     margin-left: 5px;
+  //   }
+
+  //   .text-info{
+  //     color: $openstax-neutral-light-blue;
+  //     padding-left: 5px;
+  //     cursor: pointer;
+  //     font-style: normal;
+  //   }
+  // }
+
+  // .multiple-choice-prompt {
+  //   font-weight: 600;
+  // }
+
+  // // free response
+  // .free-response {
+  //   padding: $openstax-answer-horizontal-spacing $openstax-answer-horizontal-buffer;
+  //   margin: $openstax-answer-vertical-spacing 0 $openstax-answer-horizontal-spacing $openstax-answer-vertical-spacing;
+  //   border-left: $openstax-answer-horizontal-spacing solid $openstax-free-response-background;
+  //   font-style: italic;
+  // }
+
+
+  &:not(.openstax-question-preview) {
+    // .answers-answer {
+    //   width: initial;
+    //   &:not(.disabled){
+    //     .answer-label:focus{
+    //       background-color: $openstax-neutral-lightest;
+    //     }
+    //   }
+    //   @include answer();
+    // }
+
+    // .answer-answer {
+    //   flex: 1;
+    //   display: flex;
+    //   align-items: center;
+    //   margin-left: $openstax-answer-horizontal-spacing;
+    //   * {
+    //     margin: 0;
+    //   }
+    // }
+
+    // .answer-letter {
+    //   text-align: center;
+    //   padding: 0;
+    // }
+
+
+    // .answer-label {
+    //   font-weight: normal;
+    //   width: 100%;
+    //   padding: $openstax-answer-vertical-spacing 0 0 0;
+    //   margin: 0;
+
+    //   transition: color $openstax-answer-transition;
+    // }
+
+    // // a selectable answer
+    // .answer-input-box:not([disabled]) ~ .answer-label {
+    //   cursor: pointer;
+
+    //   &:hover {
+    //     @include answer-hover();
+    //   }
+    // }
+
+    // a selected answer
+    &:not(.has-correct-answer) {
+      .answer-input-box {
+        display: none;
+
+        &:checked {
+          + .answer-label,
+          + .answer-label:hover {
+            ${mixins.answerChecked};
+          }
+        }
+      }
+
+      .answer-checked{
+        .answer-label {
+          ${mixins.answerChecked};
+        }
+      }
+    }
+
+    // // answer that has been checked
+    // &.has-correct-answer {
+    //   .answer-checked {
+    //     &:not(.answer-correct) {
+    //       .answer-label {
+    //         @include answer-wrong();
+    //       }
+    //     }
+
+    //     &.answer-correct {
+    //       .answer-label {
+    //         @include answer-correct();
+    //       }
+    //     }
+    //   }
+
+    //   .answer-correct:not(.answer-checked) {
+    //     .answer-label {
+    //       @include answer-correct-answer();
+    //     }
+    //   }
+    // }
+
+    // &.has-incorrect-answer {
+    //     .answer-incorrect, .answer-checked.answer-incorrect {
+    //         .answer-label {
+    //             @include answer-wrong();
+    //         }
+    //     }
+    // }
+
+    // .question-feedback {
+    //   $arrow-width: 20px;
+    //   $arrow-height: 15px;
+
+    //   color: $openstax-answer-label-color;
+
+    //   @include reset-text();
+    //   z-index: 1;
+    //   position: relative;
+    //   border: $popover-border-width solid $popover-border-color;
+    //   background-color: $popover-bg;
+    //   background-clip: padding-box;
+    //   border: $popover-border-width solid $popover-border-color;
+    //   @include border-radius($popover-border-radius);
+    //   max-width: $popover-max-width;
+    //   margin: ($arrow-height - 5px) 0 $openstax-answer-horizontal-spacing  (-1 * $openstax-feedback-horizontal-spacing);
+    //   box-shadow: 10px 0px 10px rgba(0, 0, 0, .25);
+    //   color: $openstax-neutral;
+    //   font-size: 1.4rem;
+    //   font-style: italic;
+
+    //   .arrow {
+    //     position: absolute;
+    //     display: block;
+    //     width: $arrow-width;
+    //     height: $arrow-height;
+    //     margin-left: 30px;
+    //     top: calc((#{$arrow-height} + #{$popover-border-width}) * -1);
+
+    //     &::before,
+    //     &::after {
+    //       position: absolute;
+    //       display: block;
+    //       content: "";
+    //       border-color: transparent;
+    //       border-style: solid;
+    //       border-width: 0 ($arrow-width / 2) $arrow-height ($arrow-width / 2);
+    //     }
+    //     &::before {
+    //       top: 0;
+    //       border-bottom-color: $popover-arrow-outer-color;
+    //     }
+    //     &::after {
+    //       top: $popover-border-width;
+    //       border-bottom-color: $popover-arrow-color;
+    //     }
+    //   }
+
+    //   .question-feedback-content {
+    //     padding: $openstax-feedback-vertical-spacing $openstax-feedback-horizontal-spacing;
+    //   }
+    // }
+  }
+}
+`;
+
+// @TODO
+export interface QuestionProps {
+  _temp_AnswersTableProps: AnswersTableProps;
+};
+
+export const Question = (props: QuestionProps) => {
+  return (
+    <StyledQuestion className="openstax-question"><AnswersTable {...props._temp_AnswersTableProps} /></StyledQuestion>
+  );
+}

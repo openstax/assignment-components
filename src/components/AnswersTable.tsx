@@ -66,7 +66,7 @@ export const AnswersTable = (props: AnswersTableProps) => {
     }
 
     return (
-      <Answer {...answerProps} />
+      <Answer {...answerProps} onKeyPress={() => {}} />
     );
   });
 
