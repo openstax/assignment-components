@@ -34,7 +34,7 @@ export const AnswersTable = (props: AnswersTableProps) => {
   } = props;
   if (hideAnswers) { return null; }
 
-  const feedback = [];
+  const feedback: { index: number, html: string }[] = [];
   const instructions = '';
 
   const chosenAnswer = [answer_id, chosenAnswerId];
@@ -70,6 +70,14 @@ export const AnswersTable = (props: AnswersTableProps) => {
     );
   });
 
+  feedback.forEach((item, i) => {
+    const spliceIndex = item.index + i + 1;
+    answersHtml.splice(spliceIndex, 0, (
+      <div key={spliceIndex}>
+        {item.html}
+      </div>
+    ));
+  });
 
   return (
     <div className="answers-table">

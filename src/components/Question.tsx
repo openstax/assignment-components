@@ -1,115 +1,116 @@
 import styled from 'styled-components';
-import { mixins } from '../theme';
+import { mixins, colors, layouts, transitions } from '../theme';
 import { AnswersTable, AnswersTableProps } from './AnswersTable';
+import cn from 'classnames';
+import { idType } from 'src/types';
 
 const StyledQuestion = styled.div`
 &.openstax-question {
-  // .detailed-solution {
-  //     margin-bottom: 1rem;
-  //     .header {
-  //         display: inline;
-  //         float: left;
-  //         margin-right: 0.5rem;
-  //         color: #5e6062;
-  //         font-weight: bold;
-  //         flex-basis: 0;
-  //     }
-  //     .solution {
-  //         color: #6f6f6f;
-  //     }
-  // }
+  .detailed-solution {
+    margin-bottom: 1rem;
+    .header {
+      display: inline;
+      float: left;
+      margin-right: 0.5rem;
+      color: #5e6062;
+      font-weight: bold;
+      flex-basis: 0;
+    }
+    .solution {
+      color: #6f6f6f;
+    }
+  }
 
-  // img {
-  //   display: block;
-  //   margin: auto;
-  //   max-width: 100%;
-  // }
+  img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+  }
 
-  // .question-stem {
-  //   margin-bottom: 0;
-  // }
+  .question-stem {
+    margin-bottom: 0;
+  }
 
-  // .answers-table {
-  //   margin-bottom: 20px;
-  //   font-size: 17px;
-  //   line-height: 25px;
-  // }
+  .answers-table {
+    margin-bottom: 20px;
+    font-size: 17px;
+    line-height: 25px;
+  }
 
-  // .instructions {
-  //   font-size: 1.4rem;
-  //   font-style: italic;
-  //   margin-top: 10px;
-  //   color: $openstax-neutral;
-  //   margin: 0;
-  //   i {
-  //     margin-left: 5px;
-  //   }
+  .instructions {
+    font-size: 1.4rem;
+    font-style: italic;
+    margin-top: 10px;
+    color: ${colors.palette.neutral};
+    margin: 0;
 
-  //   .text-info{
-  //     color: $openstax-neutral-light-blue;
-  //     padding-left: 5px;
-  //     cursor: pointer;
-  //     font-style: normal;
-  //   }
-  // }
+    i {
+      margin-left: 5px;
+    }
 
-  // .multiple-choice-prompt {
-  //   font-weight: 600;
-  // }
+    .text-info {
+      color: ${colors.palette.neutralLightBlue};
+      padding-left: 5px;
+      cursor: pointer;
+      font-style: normal;
+    }
+  }
 
-  // // free response
-  // .free-response {
-  //   padding: $openstax-answer-horizontal-spacing $openstax-answer-horizontal-buffer;
-  //   margin: $openstax-answer-vertical-spacing 0 $openstax-answer-horizontal-spacing $openstax-answer-vertical-spacing;
-  //   border-left: $openstax-answer-horizontal-spacing solid $openstax-free-response-background;
-  //   font-style: italic;
-  // }
+  .multiple-choice-prompt {
+    font-weight: 600;
+  }
 
+  .free-response {
+    padding: ${layouts.answer.horizontalSpacing} ${layouts.answer.horizontalBuffer};
+    margin: ${layouts.answer.verticalSpacing} 0 ${layouts.answer.horizontalSpacing} ${layouts.answer.verticalSpacing};
+    border-left: ${layouts.answer.horizontalSpacing} solid ${colors.palette.neutralLighter};
+    font-style: italic;
+  }
 
   &:not(.openstax-question-preview) {
-    // .answers-answer {
-    //   width: initial;
-    //   &:not(.disabled){
-    //     .answer-label:focus{
-    //       background-color: $openstax-neutral-lightest;
-    //     }
-    //   }
-    //   @include answer();
-    // }
+    .answers-answer {
+      width: initial;
+      &:not(.disabled){
+        .answer-label:focus{
+          background-color: ${colors.palette.neutralLightest};
+        }
+      }
+      ${mixins.answer()};
+    }
 
-    // .answer-answer {
-    //   flex: 1;
-    //   display: flex;
-    //   align-items: center;
-    //   margin-left: $openstax-answer-horizontal-spacing;
-    //   * {
-    //     margin: 0;
-    //   }
-    // }
+    .answer-answer {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      margin-left: ${layouts.answer.horizontalSpacing};
+      * {
+        margin: 0;
+      }
+    }
 
-    // .answer-letter {
-    //   text-align: center;
-    //   padding: 0;
-    // }
+    .answer-letter {
+      text-align: center;
+      padding: 0;
+    }
 
 
-    // .answer-label {
-    //   font-weight: normal;
-    //   width: 100%;
-    //   padding: $openstax-answer-vertical-spacing 0 0 0;
-    //   margin: 0;
+    .answer-label {
+      font-weight: normal;
+      width: 100%;
+      padding: ${layouts.answer.verticalSpacing} 0 0 0;
+      margin: 0;
 
-    //   transition: color $openstax-answer-transition;
-    // }
+      transition: color ${transitions.answer};
+    }
 
-    // // a selectable answer
-    // .answer-input-box:not([disabled]) ~ .answer-label {
-    //   cursor: pointer;
+    // a selectable answer
+    .answer-input-box:not([disabled]) ~ .answer-label {
+      cursor: pointer;
 
-    //   &:hover {
-    //     @include answer-hover();
-    //   }
-    // }
+      &:hover {
+        ${mixins.answerHover()}
+      }
+    }
 
     // a selected answer
     &:not(.has-correct-answer) {
@@ -119,101 +120,97 @@ const StyledQuestion = styled.div`
         &:checked {
           + .answer-label,
           + .answer-label:hover {
-            ${mixins.answerChecked};
+            ${mixins.answerChecked()};
           }
         }
       }
 
       .answer-checked{
         .answer-label {
-          ${mixins.answerChecked};
+          ${mixins.answerChecked()};
         }
       }
     }
 
-    // // answer that has been checked
-    // &.has-correct-answer {
-    //   .answer-checked {
-    //     &:not(.answer-correct) {
-    //       .answer-label {
-    //         @include answer-wrong();
-    //       }
-    //     }
+    // answer that has been checked
+    &.has-correct-answer {
+      .answer-checked {
+        &:not(.answer-correct) {
+          .answer-label {
+            ${mixins.answerIncorrect()};
+          }
+        }
 
-    //     &.answer-correct {
-    //       .answer-label {
-    //         @include answer-correct();
-    //       }
-    //     }
-    //   }
+        &.answer-correct {
+          .answer-label {
+            ${mixins.answerCorrect()};
+          }
+        }
+      }
 
-    //   .answer-correct:not(.answer-checked) {
-    //     .answer-label {
-    //       @include answer-correct-answer();
-    //     }
-    //   }
-    // }
+      .answer-correct:not(.answer-checked) {
+        .answer-label {
+          ${mixins.answerCorrectAnswer()}
+        }
+      }
+    }
 
-    // &.has-incorrect-answer {
-    //     .answer-incorrect, .answer-checked.answer-incorrect {
-    //         .answer-label {
-    //             @include answer-wrong();
-    //         }
-    //     }
-    // }
+    &.has-incorrect-answer {
+      .answer-incorrect, .answer-checked.answer-incorrect {
+        .answer-label {
+          ${mixins.answerIncorrect()}
+        }
+      }
+    }
 
-    // .question-feedback {
-    //   $arrow-width: 20px;
-    //   $arrow-height: 15px;
+    .question-feedback {
+      color: ${colors.answer.label.color};
 
-    //   color: $openstax-answer-label-color;
+//@include reset-text(); @TODO what is this?
 
-    //   @include reset-text();
-    //   z-index: 1;
-    //   position: relative;
-    //   border: $popover-border-width solid $popover-border-color;
-    //   background-color: $popover-bg;
-    //   background-clip: padding-box;
-    //   border: $popover-border-width solid $popover-border-color;
-    //   @include border-radius($popover-border-radius);
-    //   max-width: $popover-max-width;
-    //   margin: ($arrow-height - 5px) 0 $openstax-answer-horizontal-spacing  (-1 * $openstax-feedback-horizontal-spacing);
-    //   box-shadow: 10px 0px 10px rgba(0, 0, 0, .25);
-    //   color: $openstax-neutral;
-    //   font-size: 1.4rem;
-    //   font-style: italic;
+      z-index: 1;
+      position: relative;
+      border: ${layouts.answer.feedback.popover.borderWidth} solid ${colors.answer.feedback.popover.borderColor};
+      background-color: ${colors.palette.white};
+      background-clip: padding-box;
+      border-radius: 0.3rem;
+      max-width: ${layouts.answer.feedback.popover.maxWidth};
+      margin: calc(${layouts.answer.feedback.arrow.height} - 5px) 0 ${layouts.answer.horizontalSpacing} calc(-1 * (2 * ${layouts.answer.horizontalSpacing}));
+      box-shadow: 10px 0px 10px rgba(0, 0, 0, .25);
+      color: $openstax-neutral;
+      font-size: 1.4rem;
+      font-style: italic;
 
-    //   .arrow {
-    //     position: absolute;
-    //     display: block;
-    //     width: $arrow-width;
-    //     height: $arrow-height;
-    //     margin-left: 30px;
-    //     top: calc((#{$arrow-height} + #{$popover-border-width}) * -1);
+      .arrow {
+        position: absolute;
+        display: block;
+        width: ${layouts.answer.feedback.arrow.width};
+        height: ${layouts.answer.feedback.arrow.height};
+        margin-left: 30px;
+        top: calc((${layouts.answer.feedback.arrow.height} + ${layouts.answer.feedback.popover.borderWidth}) * -1);
 
-    //     &::before,
-    //     &::after {
-    //       position: absolute;
-    //       display: block;
-    //       content: "";
-    //       border-color: transparent;
-    //       border-style: solid;
-    //       border-width: 0 ($arrow-width / 2) $arrow-height ($arrow-width / 2);
-    //     }
-    //     &::before {
-    //       top: 0;
-    //       border-bottom-color: $popover-arrow-outer-color;
-    //     }
-    //     &::after {
-    //       top: $popover-border-width;
-    //       border-bottom-color: $popover-arrow-color;
-    //     }
-    //   }
+        &::before,
+        &::after {
+          position: absolute;
+          display: block;
+          content: "";
+          border-color: transparent;
+          border-style: solid;
+          border-width: 0 calc(${layouts.answer.feedback.arrow.width} / 2) ${layouts.answer.feedback.arrow.height} calc(${layouts.answer.feedback.arrow.width} / 2);
+        }
+        &::before {
+          top: 0;
+          border-bottom-color: ${colors.answer.feedback.popover.borderColor}; //popover-arrow-outer-color;
+        }
+        &::after {
+          top: ${layouts.answer.feedback.popover.borderWidth};
+          border-bottom-color: $${colors.palette.white};
+        }
+      }
 
-    //   .question-feedback-content {
-    //     padding: $openstax-feedback-vertical-spacing $openstax-feedback-horizontal-spacing;
-    //   }
-    // }
+      .question-feedback-content {
+        padding: ${layouts.answer.feedback.popover.verticalSpacing} ${layouts.answer.feedback.popover.horizontalSpacing};
+      }
   }
 }
 `;
@@ -221,10 +218,46 @@ const StyledQuestion = styled.div`
 // @TODO
 export interface QuestionProps {
   _temp_AnswersTableProps: AnswersTableProps;
-};
+
+  question: any,
+  answer_id?: string;
+  task?: {
+    is_deleted: boolean;
+    type?: 'homework'
+  },
+  correct_answer_id: idType;
+  incorrectAnswerId: idType;
+  hideAnswers: boolean;
+  hidePreambles: boolean,
+  exercise_uid: string;
+  displayFormats: boolean,
+  processHtmlAndMath: boolean;
+  className: string;
+  questionNumber: number;
+  displaySolution: boolean;
+  context: string;
+  correct_answer_feedback_html?: string;
+}
 
 export const Question = (props: QuestionProps) => {
+  let exerciseUid, solution;
+
+  const {
+    question, correct_answer_id, incorrectAnswerId, exercise_uid, className, questionNumber, context, task, hidePreambles,
+  } = props;
+
+  const { stem_html, collaborator_solutions, formats, stimulus_html } = question;
+
+  console.log(stem_html, collaborator_solutions, formats, stimulus_html, exercise_uid, solution, exerciseUid, className, questionNumber, context, hidePreambles);
+
+  const hasCorrectAnswer = !!correct_answer_id;
+  const hasIncorrectAnswer = !!incorrectAnswerId;
+  const classes = cn('openstax-question', props.className, {
+    'has-correct-answer': hasCorrectAnswer && !((task != null ? task.is_deleted : undefined) && ((task != null ? task.type : undefined) === 'homework')),
+    'has-incorrect-answer': hasIncorrectAnswer,
+  });
+
   return (
-    <StyledQuestion className="openstax-question"><AnswersTable {...props._temp_AnswersTableProps} /></StyledQuestion>
+    <StyledQuestion className={classes}><AnswersTable {...props._temp_AnswersTableProps} {...props} hasCorrectAnswer={hasCorrectAnswer} /></StyledQuestion>
   );
 }
