@@ -1,7 +1,7 @@
 export type answerType = {
   id: idType;
-  correctness: string | null;
-  isCorrect: boolean;
+  correctness: string | null | undefined;
+  isCorrect?: boolean;
   content_html: string;
   selected_count?: number;
 };
