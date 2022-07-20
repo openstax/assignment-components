@@ -1,3 +1,4 @@
+import { defaultAnswerType } from "../constants";
 import { Answer as AnswerType, AnswerDisplayType, ID, Question } from "src/types";
 import { Answer } from "./Answer";
 import { Feedback } from "./Feedback";
@@ -25,7 +26,7 @@ export const AnswersTable = (props: AnswersTableProps) => {
   let idCounter = 0;
 
   const {
-    question, answers, hideAnswers, type = 'student', answered_count, choicesEnabled, correct_answer_id, // @TODO add default constant for type
+    question, answers, hideAnswers, type = defaultAnswerType, answered_count, choicesEnabled, correct_answer_id,
     incorrectAnswerId, answer_id, feedback_html, correct_answer_feedback_html,
     show_all_feedback, hasCorrectAnswer, onChangeAnswer, onKeyPress
   } = props;

@@ -1,6 +1,12 @@
 import { AnswersTable, AnswersTableProps } from './AnswersTable';
 const props: AnswersTableProps = {
-  questionId: '1',
+  question: {
+    id: '1',
+    stem_html: '',
+    collaborator_solutions: [],
+    formats: [],
+    stimulus_html: '',
+  },
   answers: [{
     id: '1',
     correctness: '1.0',

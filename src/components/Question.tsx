@@ -166,7 +166,7 @@ const StyledQuestion = styled.div`
     .question-feedback {
       color: ${colors.answer.label.color};
 
-//@include reset-text(); @TODO what is this?
+      //@include reset-text(); @TODO what is this?
 
       z-index: 1;
       position: relative;
@@ -211,6 +211,7 @@ const StyledQuestion = styled.div`
       .question-feedback-content {
         padding: ${layouts.answer.feedback.popover.verticalSpacing} ${layouts.answer.feedback.popover.horizontalSpacing};
       }
+    }
   }
 }
 `;
