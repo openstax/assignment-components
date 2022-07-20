@@ -1,8 +1,7 @@
 import cn from 'classnames';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { ALPHABET, isAnswerChecked, isAnswerCorrect, isAnswerIncorrect } from '../utils';
 import { answerType, chosenAnswerType, idType } from '../types';
-import styled from 'styled-components';
 
 export interface AnswerProps {
   answer: answerType;
@@ -17,14 +16,30 @@ export interface AnswerProps {
   incorrectAnswerId?: idType;
   onKeyPress?: () => void;
   answered_count?: number;
-  children?: ReactNode;
   correctIncorrectIcon?: ReactNode,
   feedback?: ReactNode;
   radioBox?: ReactNode;
+  contentRenderer?: JSX.Element;
 }
 
-const StyledAnswer = styled.div`
-`;
+type ComponentType = keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
+
+interface ContentRendererProps<T extends ComponentType | undefined> {
+  className?: string;
+  component?: T extends undefined ? undefined :
+    T extends ComponentType ? React.ReactComponentElement<T>:
+    never;
+  html: string;
+}
+
+const AnswerContent = (<T extends ComponentType | undefined>(
+  {html, component, ...props}: ContentRendererProps<T>
+) => {
+  if (component !== undefined) {
+    return React.cloneElement(component, {html, ...props});
+  }
+  return <div dangerouslySetInnerHTML={{ __html: html }} {...props} />;
+});
 
 export const Answer = (props: AnswerProps) => {
   const {
@@ -39,8 +54,8 @@ export const Answer = (props: AnswerProps) => {
     incorrectAnswerId,
     hasCorrectAnswer,
     answered_count,
-    children,
-    feedback
+    feedback,
+    contentRenderer
   } = props;
 
   let body, selectedCount;
@@ -92,6 +107,7 @@ export const Answer = (props: AnswerProps) => {
       />
     );
   }
+
   if (type === 'teacher-review') {
     let percent = 0;
     if (answer.selected_count && answered_count) {
@@ -117,7 +133,7 @@ export const Answer = (props: AnswerProps) => {
 
         <div className="answer-answer">
           <div className="answer-content">
-            {children || answer.content_html}
+            <AnswerContent className="answer-content" component={contentRenderer} html={answer.content_html} />
           </div>
           {feedback}
         </div>
@@ -145,9 +161,7 @@ export const Answer = (props: AnswerProps) => {
             </button>
           </span>
           <div className="answer-answer">
-            <div className="answer-content">
-              {children || answer.content_html}
-            </div>
+            <AnswerContent className="answer-content" component={contentRenderer} html={answer.content_html} />
             {feedback}
           </div>
         </label>
@@ -156,11 +170,11 @@ export const Answer = (props: AnswerProps) => {
   }
 
   return (
-    <StyledAnswer className="openstax-answer">
+    <div className="openstax-answer">
       <section role="region" className={classes}>
         {body}
       </section>
-    </StyledAnswer>
+    </div>
   );
 }
 Answer.displayName = 'OSAnswer';
