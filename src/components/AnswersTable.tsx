@@ -1,5 +1,6 @@
 import { answerType, idType } from "src/types";
 import { Answer, AnswerProps } from "./Answer";
+import { Feedback } from "./Feedback";
 
 export interface AnswersTableProps {
   questionId: idType;
@@ -8,7 +9,6 @@ export interface AnswersTableProps {
   answer_id: idType;
   correct_answer_id?: idType;
   incorrectAnswerId?: idType;
-  chosenAnswerId: idType;
   feedback_html: string;
   correct_answer_feedback_html: string;
   answered_count: number;
@@ -17,12 +17,9 @@ export interface AnswersTableProps {
   hideAnswers: boolean;
   hasCorrectAnswer: boolean;
   onChangeAttempt: () => void;
-  keySet: 'TODO';
-  focus: boolean;
   choicesEnabled: boolean;
+  onKeyPress?: () => void;
 }
-
-const KEYS = { "TODO": "TODO" };
 
 export const AnswersTable = (props: AnswersTableProps) => {
   let idCounter = 0;
@@ -30,14 +27,14 @@ export const AnswersTable = (props: AnswersTableProps) => {
   const {
     questionId, answers, hideAnswers, type, answered_count, choicesEnabled, correct_answer_id,
     incorrectAnswerId, answer_id, feedback_html, correct_answer_feedback_html,
-    show_all_feedback, keySet, hasCorrectAnswer, focus, onChangeAnswer, chosenAnswerId
+    show_all_feedback, hasCorrectAnswer, onChangeAnswer, onKeyPress
   } = props;
   if (hideAnswers) { return null; }
 
   const feedback: { index: number, html: string }[] = [];
   const instructions = '';
 
-  const chosenAnswer = [answer_id, chosenAnswerId];
+  const chosenAnswer = [answer_id];
 
   const questionAnswerProps = {
     qid: questionId || `auto-${idCounter++}`,
@@ -50,13 +47,12 @@ export const AnswersTable = (props: AnswersTableProps) => {
     answered_count,
     disabled: !choicesEnabled,
     show_all_feedback,
+    onKeyPress
   };
 
   const answersHtml = answers.map((answer, i) => {
-    const additionalProps: { answer: answerType, iter: number, key: string, keyControl?: any}
+    const additionalProps: { answer: answerType, iter: number, key: string }
       = { answer, iter: i, key: `${questionAnswerProps.qid}-option-${i}` };
-    if (focus) { additionalProps.keyControl = KEYS[keySet] != null ? KEYS[keySet][i] : undefined; }
-    //const answerProps = extend({}, additionalProps, questionAnswerProps);
     const answerProps = Object.assign({}, additionalProps, questionAnswerProps);
 
     if (answer.id === incorrectAnswerId && feedback_html) {
@@ -66,16 +62,16 @@ export const AnswersTable = (props: AnswersTableProps) => {
     }
 
     return (
-      <Answer {...answerProps} onKeyPress={() => {}} />
+      <Answer {...answerProps} />
     );
   });
 
   feedback.forEach((item, i) => {
     const spliceIndex = item.index + i + 1;
     answersHtml.splice(spliceIndex, 0, (
-      <div key={spliceIndex}>
+      <Feedback key={spliceIndex}>
         {item.html}
-      </div>
+      </Feedback>
     ));
   });
 
