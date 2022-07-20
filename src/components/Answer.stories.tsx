@@ -9,9 +9,9 @@ const props: AnswerProps = {
     content_html: 'Anwer',
     selected_count: 5
   },
-  onChangeAnswer: () => {},
+  onChangeAnswer: () => null,
   disabled: false,
-  onKeyPress: () => {},
+  onKeyPress: () => null,
   qid: 1,
   hasCorrectAnswer: false,
   chosenAnswer: [],

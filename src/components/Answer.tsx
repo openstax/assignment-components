@@ -22,6 +22,7 @@ export interface AnswerProps {
   contentRenderer?: JSX.Element;
 }
 
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 type ComponentType = keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
 
 interface ContentRendererProps<T extends ComponentType | undefined> {
