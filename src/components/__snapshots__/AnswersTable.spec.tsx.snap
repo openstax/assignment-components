@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AnswersTable matches snapshot 1`] = `
+exports[`AnswersTable matches tutor teacher-preview snapshot 1`] = `
 <div
   className="answers-table"
 >
@@ -8,7 +8,108 @@ exports[`AnswersTable matches snapshot 1`] = `
     className="openstax-answer"
   >
     <section
-      className="answers-answer answer-checked answer-correct"
+      className="answers-answer disabled"
+      role="region"
+    >
+      <div
+        className="correct-incorrect"
+      />
+      <label
+        className="answer-label"
+        htmlFor="1-option-0"
+        onKeyPress={[Function]}
+      >
+        <span
+          className="answer-letter-wrapper"
+        >
+          <button
+            aria-label="Choice a:"
+            className="answer-letter"
+            data-test-id="answer-choice-a"
+            disabled={true}
+          >
+            a
+          </button>
+        </span>
+        <div
+          className="answer-answer"
+        >
+          <div
+            className="answer-content"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<ol>
+  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
+  <li>objects are too small to be seen with the naked eye, and</li>
+  <li>there is the involvement of only a weak gravitational field</li>
+</ol>
+",
+              }
+            }
+          />
+        </div>
+      </label>
+    </section>
+  </div>
+  <div
+    className="openstax-answer"
+  >
+    <section
+      className="answers-answer disabled"
+      role="region"
+    >
+      <div
+        className="correct-incorrect"
+      />
+      <label
+        className="answer-label"
+        htmlFor="1-option-1"
+        onKeyPress={[Function]}
+      >
+        <span
+          className="answer-letter-wrapper"
+        >
+          <button
+            aria-label="Choice b:"
+            className="answer-letter"
+            data-test-id="answer-choice-b"
+            disabled={true}
+          >
+            b
+          </button>
+        </span>
+        <div
+          className="answer-answer"
+        >
+          <div
+            className="answer-content"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<ol>
+  <li>matter is moving at speeds greater than roughly 1% the speed of light,</li>
+  <li>objects are large enough to be seen with the naked eye, and</li>
+  <li>there is the involvement of a strong gravitational field</li>
+</ol>
+",
+              }
+            }
+          />
+        </div>
+      </label>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`AnswersTable renders correct answer feedback 1`] = `
+<div
+  className="answers-table"
+>
+  <div
+    className="openstax-answer"
+  >
+    <section
+      className="answers-answer disabled answer-checked answer-correct"
       role="region"
     >
       <label
@@ -22,7 +123,7 @@ exports[`AnswersTable matches snapshot 1`] = `
             aria-label="Selected Choice a(Correct Answer):"
             className="answer-letter"
             data-test-id="answer-choice-a"
-            disabled={false}
+            disabled={true}
           >
             a
           </button>
@@ -32,18 +133,30 @@ exports[`AnswersTable matches snapshot 1`] = `
         >
           <div
             className="answer-content"
-          >
-            A
-          </div>
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "A",
+              }
+            }
+          />
         </div>
       </label>
     </section>
   </div>
+  <aside
+    className="question-feedback bottom"
+  >
+    <div
+      aria-label="Answer Feedback"
+      className="arrow"
+    />
+    Feedback
+  </aside>
   <div
     className="openstax-answer"
   >
     <section
-      className="answers-answer answer-checked answer-correct"
+      className="answers-answer disabled"
       role="region"
     >
       <label
@@ -54,10 +167,10 @@ exports[`AnswersTable matches snapshot 1`] = `
           className="answer-letter-wrapper"
         >
           <button
-            aria-label="Selected Choice b(Correct Answer):"
+            aria-label="Choice b(Incorrect Answer):"
             className="answer-letter"
             data-test-id="answer-choice-b"
-            disabled={false}
+            disabled={true}
           >
             b
           </button>
@@ -67,9 +180,124 @@ exports[`AnswersTable matches snapshot 1`] = `
         >
           <div
             className="answer-content"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "B",
+              }
+            }
+          />
+        </div>
+      </label>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`AnswersTable renders incorrect answer feedback 1`] = `
+<div
+  className="answers-table"
+>
+  <div
+    className="openstax-answer"
+  >
+    <section
+      className="answers-answer disabled answer-checked answer-incorrect"
+      role="region"
+    >
+      <input
+        checked={true}
+        className="answer-input-box"
+        disabled={true}
+        id="1-option-0"
+        name="1-options"
+        onChange={[MockFunction]}
+        type="radio"
+      />
+      <label
+        className="answer-label"
+        htmlFor="1-option-0"
+      >
+        <span
+          className="answer-letter-wrapper"
+        >
+          <button
+            aria-label="Selected Choice a:"
+            className="answer-letter"
+            data-test-id="answer-choice-a"
+            disabled={true}
+            onClick={[MockFunction]}
           >
-            B
-          </div>
+            a
+          </button>
+        </span>
+        <div
+          className="answer-answer"
+        >
+          <div
+            className="answer-content"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "A",
+              }
+            }
+          />
+        </div>
+      </label>
+    </section>
+  </div>
+  <aside
+    className="question-feedback bottom"
+  >
+    <div
+      aria-label="Answer Feedback"
+      className="arrow"
+    />
+    Feedback
+  </aside>
+  <div
+    className="openstax-answer"
+  >
+    <section
+      className="answers-answer disabled answer-correct"
+      role="region"
+    >
+      <input
+        checked={false}
+        className="answer-input-box"
+        disabled={true}
+        id="1-option-1"
+        name="1-options"
+        onChange={[MockFunction]}
+        type="radio"
+      />
+      <label
+        className="answer-label"
+        htmlFor="1-option-1"
+      >
+        <span
+          className="answer-letter-wrapper"
+        >
+          <button
+            aria-label="Choice b:"
+            className="answer-letter"
+            data-test-id="answer-choice-b"
+            disabled={true}
+            onClick={[MockFunction]}
+          >
+            b
+          </button>
+        </span>
+        <div
+          className="answer-answer"
+        >
+          <div
+            className="answer-content"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "B",
+              }
+            }
+          />
         </div>
       </label>
     </section>

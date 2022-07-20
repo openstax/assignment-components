@@ -1,14 +1,9 @@
 import { Answer, AnswerProps } from './Answer';
 import renderer from 'react-test-renderer';
+import { answerContent } from '../test/fixtures';
 
 describe('Answer', () => {
   let props: AnswerProps;
-  const answerContent = `<ol>
-  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
-  <li>objects are too small to be seen with the naked eye, and</li>
-  <li>there is the involvement of only a weak gravitational field</li>
-</ol>
-`;
 
   beforeEach(() => {
     props = {
@@ -18,7 +13,7 @@ describe('Answer', () => {
         id: 1,
         correctness: null,
         isCorrect: true,
-        content_html: answerContent,
+        content_html: answerContent[0],
         selected_count: 5
       },
       onChangeAnswer: () => jest.fn(),
@@ -85,7 +80,6 @@ describe('Answer', () => {
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
-
 
   it('renders teacher preview', () => {
     props = {...props, correctAnswerId: props.answer.id, correctIncorrectIcon: <span>Iconic</span>};
