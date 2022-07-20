@@ -40,9 +40,17 @@ exports[`Answer matches snapshot 1`] = `
       >
         <div
           className="answer-content"
-        >
-          Some great content
-        </div>
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<ol>
+  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
+  <li>objects are too small to be seen with the naked eye, and</li>
+  <li>there is the involvement of only a weak gravitational field</li>
+</ol>
+",
+            }
+          }
+        />
       </div>
     </label>
   </section>
@@ -89,9 +97,17 @@ exports[`Answer renders a checked answer 1`] = `
       >
         <div
           className="answer-content"
-        >
-          Some great content
-        </div>
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<ol>
+  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
+  <li>objects are too small to be seen with the naked eye, and</li>
+  <li>there is the involvement of only a weak gravitational field</li>
+</ol>
+",
+            }
+          }
+        />
       </div>
     </label>
   </section>
@@ -128,9 +144,17 @@ exports[`Answer renders a correct answer 1`] = `
       >
         <div
           className="answer-content"
-        >
-          Some great content
-        </div>
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<ol>
+  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
+  <li>objects are too small to be seen with the naked eye, and</li>
+  <li>there is the involvement of only a weak gravitational field</li>
+</ol>
+",
+            }
+          }
+        />
       </div>
     </label>
   </section>
@@ -167,69 +191,17 @@ exports[`Answer renders an incorrect answer 1`] = `
       >
         <div
           className="answer-content"
-        >
-          Some great content
-        </div>
-      </div>
-    </label>
-  </section>
-</div>
-`;
-
-exports[`Answer renders children instead of content_html if set 1`] = `
-<div
-  className="openstax-answer"
->
-  <section
-    className="answers-answer"
-    role="region"
-  >
-    <input
-      checked={false}
-      className="answer-input-box"
-      disabled={false}
-      id="1-option-1"
-      name="1-options"
-      onChange={[Function]}
-      type="radio"
-    />
-    <label
-      className="answer-label"
-      htmlFor="1-option-1"
-      onKeyPress={[Function]}
-    >
-      <span
-        className="answer-letter-wrapper"
-      >
-        <button
-          aria-label="Choice b:"
-          className="answer-letter"
-          data-test-id="answer-choice-b"
-          disabled={false}
-          onClick={[Function]}
-        >
-          b
-        </button>
-      </span>
-      <div
-        className="answer-answer"
-      >
-        <div
-          className="answer-content"
-        >
-          <div
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "<ol>
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<ol>
   <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
   <li>objects are too small to be seen with the naked eye, and</li>
   <li>there is the involvement of only a weak gravitational field</li>
 </ol>
 ",
-              }
             }
-          />
-        </div>
+          }
+        />
       </div>
     </label>
   </section>
@@ -276,9 +248,17 @@ exports[`Answer renders feedback 1`] = `
       >
         <div
           className="answer-content"
-        >
-          Some great content
-        </div>
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<ol>
+  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
+  <li>objects are too small to be seen with the naked eye, and</li>
+  <li>there is the involvement of only a weak gravitational field</li>
+</ol>
+",
+            }
+          }
+        />
         <div>
           Insightful commentary
         </div>
@@ -325,9 +305,17 @@ exports[`Answer renders teacher preview 1`] = `
       >
         <div
           className="answer-content"
-        >
-          Some great content
-        </div>
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<ol>
+  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
+  <li>objects are too small to be seen with the naked eye, and</li>
+  <li>there is the involvement of only a weak gravitational field</li>
+</ol>
+",
+            }
+          }
+        />
       </div>
     </label>
   </section>
@@ -366,10 +354,79 @@ exports[`Answer renders teacher review 1`] = `
         <div
           className="answer-content"
         >
-          Some great content
+          <div
+            className="answer-content"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<ol>
+  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
+  <li>objects are too small to be seen with the naked eye, and</li>
+  <li>there is the involvement of only a weak gravitational field</li>
+</ol>
+",
+              }
+            }
+          />
         </div>
       </div>
     </div>
+  </section>
+</div>
+`;
+
+exports[`Answer renders with a custom renderer if set 1`] = `
+<div
+  className="openstax-answer"
+>
+  <section
+    className="answers-answer"
+    role="region"
+  >
+    <input
+      checked={false}
+      className="answer-input-box"
+      disabled={false}
+      id="1-option-1"
+      name="1-options"
+      onChange={[Function]}
+      type="radio"
+    />
+    <label
+      className="answer-label"
+      htmlFor="1-option-1"
+      onKeyPress={[Function]}
+    >
+      <span
+        className="answer-letter-wrapper"
+      >
+        <button
+          aria-label="Choice b:"
+          className="answer-letter"
+          data-test-id="answer-choice-b"
+          disabled={false}
+          onClick={[Function]}
+        >
+          b
+        </button>
+      </span>
+      <div
+        className="answer-answer"
+      >
+        <div
+          className="custom-renderer"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<ol>
+  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
+  <li>objects are too small to be seen with the naked eye, and</li>
+  <li>there is the involvement of only a weak gravitational field</li>
+</ol>
+",
+            }
+          }
+        />
+      </div>
+    </label>
   </section>
 </div>
 `;

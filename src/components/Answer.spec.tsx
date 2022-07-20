@@ -3,6 +3,12 @@ import renderer from 'react-test-renderer';
 
 describe('Answer', () => {
   let props: AnswerProps;
+  const answerContent = `<ol>
+  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
+  <li>objects are too small to be seen with the naked eye, and</li>
+  <li>there is the involvement of only a weak gravitational field</li>
+</ol>
+`;
 
   beforeEach(() => {
     props = {
@@ -12,7 +18,7 @@ describe('Answer', () => {
         id: 1,
         correctness: null,
         isCorrect: true,
-        content_html: 'Some great content',
+        content_html: answerContent,
         selected_count: 5
       },
       onChangeAnswer: () => jest.fn(),
@@ -34,18 +40,12 @@ describe('Answer', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders children instead of content_html if set', () => {
-    // Test how Tutor sets answer content
-    const childContent = `<ol>
-  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
-  <li>objects are too small to be seen with the naked eye, and</li>
-  <li>there is the involvement of only a weak gravitational field</li>
-</ol>
-`;
+  it('renders with a custom renderer if set', () => {
+    const CustomRenderer = ({ html = '' }: { html?: string }) => (
+      <div className="custom-renderer" dangerouslySetInnerHTML={{ __html: html }} />
+    );
     const tree = renderer.create(
-      <Answer {...props}>
-        <div dangerouslySetInnerHTML={{ __html: childContent }}></div>
-      </Answer>
+      <Answer {...props} contentRenderer={<CustomRenderer />} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
