@@ -14,19 +14,16 @@ const props: AnswersTableProps = {
   }],
   type: 'student',
   answer_id: '',
-  chosenAnswerId: '',
   feedback_html: '',
   correct_answer_feedback_html: '',
   answered_count: 0,
   show_all_feedback: false,
-  onChangeAnswer: () => {},
+  onChangeAnswer: () => null,
   hideAnswers: false,
   hasCorrectAnswer: false,
-  onChangeAttempt: () => {},
-  keySet: 'TODO',
-  focus: false,
+  onChangeAttempt: () => null,
   choicesEnabled: true,
 };
 
 export const Default = () => <AnswersTable {...props} />;
-export const Checked = () => <AnswersTable {...props} chosenAnswerId='1'  />;
+export const Checked = () => <AnswersTable {...props} answer_id='1'  />;

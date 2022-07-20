@@ -1,14 +1,14 @@
-import { answerType, idType } from "src/types";
-import { Answer, AnswerProps } from "./Answer";
+import { Answer as AnswerType, AnswerDisplayType, ID, Question } from "src/types";
+import { Answer } from "./Answer";
 import { Feedback } from "./Feedback";
 
 export interface AnswersTableProps {
-  questionId: idType;
-  answers: answerType[];
-  type: AnswerProps['type']; // @TODO
-  answer_id: idType;
-  correct_answer_id?: idType;
-  incorrectAnswerId?: idType;
+  question: Question;
+  answers: AnswerType[];
+  type?: AnswerDisplayType;
+  answer_id: ID;
+  correct_answer_id?: ID;
+  incorrectAnswerId?: ID;
   feedback_html: string;
   correct_answer_feedback_html: string;
   answered_count: number;
@@ -25,11 +25,13 @@ export const AnswersTable = (props: AnswersTableProps) => {
   let idCounter = 0;
 
   const {
-    questionId, answers, hideAnswers, type, answered_count, choicesEnabled, correct_answer_id,
+    question, answers, hideAnswers, type = 'student', answered_count, choicesEnabled, correct_answer_id, // @TODO add default constant for type
     incorrectAnswerId, answer_id, feedback_html, correct_answer_feedback_html,
     show_all_feedback, hasCorrectAnswer, onChangeAnswer, onKeyPress
   } = props;
   if (hideAnswers) { return null; }
+
+  const { id } = question;
 
   const feedback: { index: number, html: string }[] = [];
   const instructions = '';
@@ -37,7 +39,7 @@ export const AnswersTable = (props: AnswersTableProps) => {
   const chosenAnswer = [answer_id];
 
   const questionAnswerProps = {
-    qid: questionId || `auto-${idCounter++}`,
+    qid: id || `auto-${idCounter++}`,
     correctAnswerId: correct_answer_id,
     incorrectAnswerId,
     hasCorrectAnswer,
@@ -51,7 +53,7 @@ export const AnswersTable = (props: AnswersTableProps) => {
   };
 
   const answersHtml = answers.map((answer, i) => {
-    const additionalProps: { answer: answerType, iter: number, key: string }
+    const additionalProps: { answer: AnswerType, iter: number, key: string }
       = { answer, iter: i, key: `${questionAnswerProps.qid}-option-${i}` };
     const answerProps = Object.assign({}, additionalProps, questionAnswerProps);
 

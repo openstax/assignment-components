@@ -1,8 +1,8 @@
 import { isAnswerChecked, isAnswerCorrect, isAnswerIncorrect } from './utils';
-import { answerType } from './types';
+import { Answer } from './types';
 
 describe('isAnswerCorrect', () => {
-  let answer: answerType;
+  let answer: Answer;
 
   beforeEach(() => {
     answer = {
@@ -40,7 +40,7 @@ describe('isAnswerCorrect', () => {
 });
 
 describe('isAnswerIncorrect', () => {
-  let answer: answerType;
+  let answer: Answer;
 
   beforeEach(() => {
     answer = {
@@ -59,7 +59,7 @@ describe('isAnswerIncorrect', () => {
 });
 
 describe('isAnswerChecked', () => {
-  let answer: answerType;
+  let answer: Answer;
 
   beforeEach(() => {
     answer = {

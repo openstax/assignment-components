@@ -1,7 +1,13 @@
 import { Question, QuestionProps } from './Question';
 
-const answersTableProps = {
-  questionId: '1',
+const props: QuestionProps = {
+  question: {
+    id: '1',
+    stem_html: '',
+    collaborator_solutions: [],
+    formats: [],
+    stimulus_html: '',
+  },
   answers: [{
     id: '1',
     correctness: undefined,
@@ -11,30 +17,6 @@ const answersTableProps = {
     correctness: undefined,
     content_html: 'False'
   }],
-  type: ('student' as any),
-  answer_id: '',
-  chosenAnswerId: '',
-  feedback_html: '',
-  correct_answer_feedback_html: '',
-  answered_count: 0,
-  show_all_feedback: false,
-  onChangeAnswer: () => { console.log('onChangeAnswer') },
-  hideAnswers: false,
-  hasCorrectAnswer: false,
-  onChangeAttempt: () => { console.log('onChangeAttempt') },
-  keySet: ('TODO' as any),
-  focus: false,
-  choicesEnabled: true,
-};
-
-const props: QuestionProps = {
-  _temp_AnswersTableProps: answersTableProps,
-  question: {
-    stem_html: '',
-    collaborator_solutions: '',
-    formats: '',
-    stimulus_html: '',
-  },
   task: {
     is_deleted: false,
     type: 'homework'

@@ -1,13 +1,20 @@
 import { AnswersTable, AnswersTableProps } from './AnswersTable';
 import renderer from 'react-test-renderer';
 import { answerContent } from '../test/fixtures';
+import { Answer } from './Answer';
 
 describe('AnswersTable', () => {
   let props: AnswersTableProps;
 
   beforeEach(() => {
     props = {
-      questionId: '1',
+      question: {
+        id: '1',
+        stem_html: '',
+        collaborator_solutions: [],
+        formats: [],
+        stimulus_html: '',
+      },
       answers: [{
         id: '1',
         correctness: undefined,
@@ -35,7 +42,7 @@ describe('AnswersTable', () => {
   it('matches tutor teacher-preview snapshot', () => {
     props.answers.forEach((answer, i) => answer.content_html = answerContent[i]);
     const tree = renderer.create(
-      <AnswersTable {...props} type="teacher-preview" onKeyPress={() => {}} />
+      <AnswersTable {...props} type="teacher-preview" onKeyPress={() => null} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -73,8 +80,23 @@ describe('AnswersTable', () => {
 
   it('generates an id if missing', () => {
     const tree = renderer.create(
-      <AnswersTable {...props} questionId='' />
+      <AnswersTable {...props} question={{...props.question, id: ''}} />
     );
     expect(tree.root.findAllByProps({ qid: 'auto-0' }).length).toBe(2);
+  });
+
+  it('defaults the type', () => {
+    const tree = renderer.create(
+      <AnswersTable {...props} type={undefined} />
+    );
+    expect(tree.root.findAllByType(Answer).map((a) => a.props['type'])).toEqual(['student', 'student']);
+  });
+
+  it('renders teacher-preview type', () => {
+    const type = 'teacher-preview';
+    const tree = renderer.create(
+      <AnswersTable {...props} question={{...props.question, id: ''}} type={type} />
+    );
+    expect(tree.root.findAllByType(Answer).map((a) => a.props['type'])).toEqual([type, type]);
   });
 });

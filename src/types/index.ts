@@ -1,11 +1,20 @@
-export type answerType = {
-  id: idType;
+export type Question = { // @TODO Check these types against models
+  id: ID;
+  stem_html: string;
+  collaborator_solutions: [];
+  formats: [];
+  stimulus_html: string;
+};
+
+export type Answer = {
+  id: ID;
   correctness: string | null | undefined;
   isCorrect?: boolean;
   content_html: string;
   selected_count?: number;
 };
 
-export type chosenAnswerType = (idType | undefined)[];
+export type AnswerDisplayType = 'teacher-review' | 'teacher-preview' | 'student' | 'student-mpp';
+export type ChosenAnswer = (ID | undefined)[];
 
-export type idType = string | number;
+export type ID = string | number;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { mixins, colors, layouts, transitions } from '../theme';
-import { AnswersTable, AnswersTableProps } from './AnswersTable';
+import { AnswersTable } from './AnswersTable';
 import cn from 'classnames';
-import { idType } from 'src/types';
+import { Answer, ID, Question as QuestionType } from 'src/types';
 
 const StyledQuestion = styled.div`
 &.openstax-question {
@@ -215,18 +215,15 @@ const StyledQuestion = styled.div`
 }
 `;
 
-// @TODO
 export interface QuestionProps {
-  _temp_AnswersTableProps: AnswersTableProps;
-
-  question: any,
+  question: QuestionType,
   answer_id?: string;
   task?: {
     is_deleted: boolean;
     type?: 'homework'
   },
-  correct_answer_id: idType;
-  incorrectAnswerId: idType;
+  correct_answer_id: ID;
+  incorrectAnswerId: ID;
   hideAnswers: boolean;
   hidePreambles: boolean,
   exercise_uid: string;
@@ -237,6 +234,7 @@ export interface QuestionProps {
   displaySolution: boolean;
   context: string;
   correct_answer_feedback_html?: string;
+  answers: Answer[];
 }
 
 export const Question = (props: QuestionProps) => {
@@ -258,6 +256,8 @@ export const Question = (props: QuestionProps) => {
   });
 
   return (
-    <StyledQuestion className={classes}><AnswersTable {...props._temp_AnswersTableProps} {...props} hasCorrectAnswer={hasCorrectAnswer} /></StyledQuestion>
+    <StyledQuestion className={classes}>
+      <AnswersTable {...props} hasCorrectAnswer={hasCorrectAnswer} />
+    </StyledQuestion>
   );
 }

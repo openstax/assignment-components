@@ -1,19 +1,19 @@
 import cn from 'classnames';
 import React, { ReactNode } from 'react';
 import { ALPHABET, isAnswerChecked, isAnswerCorrect, isAnswerIncorrect } from '../utils';
-import { answerType, chosenAnswerType, idType } from '../types';
+import { Answer as AnswerType, ChosenAnswer, ID } from '../types';
 
 export interface AnswerProps {
-  answer: answerType;
+  answer: AnswerType;
   iter: number;
-  qid: idType;
+  qid: ID;
   type: 'teacher-review' | 'teacher-preview' | 'student' | 'student-mpp';
   hasCorrectAnswer: boolean;
   onChangeAnswer: () => void;
   disabled: boolean;
-  chosenAnswer: chosenAnswerType;
-  correctAnswerId?: idType;
-  incorrectAnswerId?: idType;
+  chosenAnswer: ChosenAnswer;
+  correctAnswerId?: ID;
+  incorrectAnswerId?: ID;
   onKeyPress?: () => void;
   answered_count?: number;
   correctIncorrectIcon?: ReactNode,
