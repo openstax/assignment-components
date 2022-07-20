@@ -1,7 +1,8 @@
 import cn from 'classnames';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { ALPHABET, isAnswerChecked, isAnswerCorrect, isAnswerIncorrect } from '../utils';
 import { Answer as AnswerType, ChosenAnswer, ID } from '../types';
+import { Content } from './Content';
 
 export interface AnswerProps {
   answer: AnswerType;
@@ -21,26 +22,6 @@ export interface AnswerProps {
   radioBox?: ReactNode;
   contentRenderer?: JSX.Element;
 }
-
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-type ComponentType = keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
-
-interface ContentRendererProps<T extends ComponentType | undefined> {
-  className?: string;
-  component?: T extends undefined ? undefined :
-    T extends ComponentType ? React.ReactComponentElement<T>:
-    never;
-  html: string;
-}
-
-const AnswerContent = (<T extends ComponentType | undefined>(
-  {html, component, ...props}: ContentRendererProps<T>
-) => {
-  if (component !== undefined) {
-    return React.cloneElement(component, {html, ...props});
-  }
-  return <div dangerouslySetInnerHTML={{ __html: html }} {...props} />;
-});
 
 export const Answer = (props: AnswerProps) => {
   const {
@@ -134,7 +115,7 @@ export const Answer = (props: AnswerProps) => {
 
         <div className="answer-answer">
           <div className="answer-content">
-            <AnswerContent className="answer-content" component={contentRenderer} html={answer.content_html} />
+            <Content className="answer-content" component={contentRenderer} html={answer.content_html} />
           </div>
           {feedback}
         </div>
@@ -162,7 +143,7 @@ export const Answer = (props: AnswerProps) => {
             </button>
           </span>
           <div className="answer-answer">
-            <AnswerContent className="answer-content" component={contentRenderer} html={answer.content_html} />
+            <Content className="answer-content" component={contentRenderer} html={answer.content_html} />
             {feedback}
           </div>
         </label>

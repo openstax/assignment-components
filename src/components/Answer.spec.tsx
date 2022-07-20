@@ -84,7 +84,7 @@ describe('Answer', () => {
   it('renders teacher preview', () => {
     props = {...props, correctAnswerId: props.answer.id, correctIncorrectIcon: <span>Iconic</span>};
     const tree = renderer.create(
-      <Answer {...props} type='teacher-preview'  />
+      <Answer {...props} type='teacher-preview' />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

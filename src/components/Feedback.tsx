@@ -1,10 +1,22 @@
 import classnames from 'classnames';
-import { ReactNode } from 'react';
+import { Content } from './Content';
 
 interface FeedbackProps {
   position?: 'top' | 'bottom' | 'left' | 'right';
-  children?: ReactNode;
+  children: string;
+  className?: string;
+  contentRenderer?: JSX.Element;
 }
+
+const SimpleFeedback = (props: Pick<FeedbackProps, 'children' | 'className' | 'contentRenderer'>) => (
+  <aside>
+    <Content
+      component={props.contentRenderer}
+      className={classnames('question-feedback-content', 'has-html', props.className)}
+      html={props.children}
+      block={true} />
+  </aside>
+);
 
 const Feedback = (props: FeedbackProps) => {
   const position = props.position || 'bottom';
@@ -13,7 +25,9 @@ const Feedback = (props: FeedbackProps) => {
   return (
     <aside className={wrapperClasses}>
       <div className="arrow" aria-label="Answer Feedback" />
-      {props.children}
+      <SimpleFeedback>
+        {props.children}
+      </SimpleFeedback>
     </aside>
   );
 };

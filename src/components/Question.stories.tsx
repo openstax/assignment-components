@@ -32,7 +32,7 @@ const props: QuestionProps = {
   questionNumber: 1,
   displaySolution: false,
   context: '',
-  correct_answer_feedback_html: 'Feedback',
+  correct_answer_feedback_html: '<b>Feedback</b>',
 };
 
 export const Default = () => <Question {...props} />;

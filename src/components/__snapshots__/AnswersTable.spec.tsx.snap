@@ -150,7 +150,17 @@ exports[`AnswersTable renders correct answer feedback 1`] = `
       aria-label="Answer Feedback"
       className="arrow"
     />
-    Feedback
+    <aside>
+      <div
+        block={true}
+        className="question-feedback-content has-html"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Feedback",
+          }
+        }
+      />
+    </aside>
   </aside>
   <div
     className="openstax-answer"
@@ -252,7 +262,17 @@ exports[`AnswersTable renders incorrect answer feedback 1`] = `
       aria-label="Answer Feedback"
       className="arrow"
     />
-    Feedback
+    <aside>
+      <div
+        block={true}
+        className="question-feedback-content has-html"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Feedback",
+          }
+        }
+      />
+    </aside>
   </aside>
   <div
     className="openstax-answer"
