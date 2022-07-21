@@ -6,18 +6,19 @@ import { Feedback } from "./Feedback";
 export interface AnswersTableProps {
   question: Question;
   type?: AnswerDisplayType;
-  answer_id: ID;
+  answer_id?: ID;
   correct_answer_id?: ID;
   incorrectAnswerId?: ID;
+  answerIdOrder?: [],
   feedback_html: string;
-  correct_answer_feedback_html: string;
-  answered_count: number;
-  show_all_feedback: boolean;
+  correct_answer_feedback_html?: string;
+  answered_count?: number;
+  show_all_feedback?: boolean;
   onChangeAnswer: () => void;
   hideAnswers: boolean;
-  hasCorrectAnswer: boolean;
-  onChangeAttempt: () => void;
-  choicesEnabled: boolean;
+  hasCorrectAnswer?: boolean;
+  onChangeAttempt?: () => void;
+  choicesEnabled?: boolean;
   onKeyPress?: () => void;
   contentRenderer?: JSX.Element;
 }
@@ -28,7 +29,7 @@ export const AnswersTable = (props: AnswersTableProps) => {
   const {
     question, hideAnswers, type = defaultAnswerType, answered_count, choicesEnabled, correct_answer_id,
     incorrectAnswerId, answer_id, feedback_html, correct_answer_feedback_html,
-    show_all_feedback, hasCorrectAnswer, onChangeAnswer, onKeyPress
+    show_all_feedback = false, hasCorrectAnswer, onChangeAnswer, onKeyPress
   } = props;
   if (hideAnswers) { return null; }
 

@@ -259,9 +259,17 @@ exports[`Answer renders feedback 1`] = `
             }
           }
         />
-        <div>
-          Insightful commentary
-        </div>
+        <aside>
+          <div
+            block={true}
+            className="question-feedback-content has-html"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<div>Insightful commentary</div>",
+              }
+            }
+          />
+        </aside>
       </div>
     </label>
   </section>

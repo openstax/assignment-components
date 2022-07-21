@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { mixins, colors, layouts, transitions } from '../theme';
 import { AnswersTable } from './AnswersTable';
 import cn from 'classnames';
-import { Answer, ID, Question as QuestionType } from 'src/types';
+import { ID, Question as QuestionType } from 'src/types';
 
 const StyledQuestion = styled.div`
 &.openstax-question {
@@ -235,15 +235,17 @@ export interface QuestionProps {
   displaySolution: boolean;
   context: string;
   correct_answer_feedback_html?: string;
-  answers: Answer[];
   contentRenderer?: JSX.Element;
+  feedback_html: string;
+  onChange: () => void;
+  show_all_feedback?: boolean;
 }
 
 export const Question = (props: QuestionProps) => {
   let exerciseUid, solution;
 
   const {
-    question, correct_answer_id, incorrectAnswerId, exercise_uid, className, questionNumber, context, task, hidePreambles,
+    question, correct_answer_id, incorrectAnswerId, exercise_uid, className, questionNumber, context, task, hidePreambles
   } = props;
 
   const { stem_html, collaborator_solutions, formats, stimulus_html } = question;
@@ -259,7 +261,10 @@ export const Question = (props: QuestionProps) => {
 
   return (
     <StyledQuestion className={classes}>
-      <AnswersTable {...props} hasCorrectAnswer={hasCorrectAnswer} />
+      <AnswersTable
+        {...props}
+        onChangeAnswer={props.onChange}
+        hasCorrectAnswer={hasCorrectAnswer} />
     </StyledQuestion>
   );
 }

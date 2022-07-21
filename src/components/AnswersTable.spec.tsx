@@ -86,11 +86,13 @@ describe('AnswersTable', () => {
     expect(tree.root.findAllByProps({ qid: 'auto-0' }).length).toBe(2);
   });
 
-  it('defaults the type', () => {
+  it('defaults type and show_all_feedback', () => {
     const tree = renderer.create(
-      <AnswersTable {...props} type={undefined} />
+      <AnswersTable {...props} type={undefined} show_all_feedback={undefined} />
     );
-    expect(tree.root.findAllByType(Answer).map((a) => a.props['type'])).toEqual(['student', 'student']);
+    const allProps = tree.root.findAllByType(Answer).map((a) => a.props);
+    expect(allProps.map((props) => props['type'])).toEqual(['student', 'student']);
+    expect(allProps.map((props) => props['show_all_feedback'])).toEqual([false, false]);
   });
 
   it('renders teacher-preview type', () => {

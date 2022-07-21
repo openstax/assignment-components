@@ -10,7 +10,7 @@ export interface AnswerProps {
   iter: number;
   qid: ID;
   type: 'teacher-review' | 'teacher-preview' | 'student' | 'student-mpp';
-  hasCorrectAnswer: boolean;
+  hasCorrectAnswer?: boolean;
   onChangeAnswer: () => void;
   disabled: boolean;
   chosenAnswer: ChosenAnswer;
