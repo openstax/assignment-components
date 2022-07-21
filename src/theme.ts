@@ -32,7 +32,7 @@ export const colors = {
     },
     incorrect: {
       color: palette.red,
-      background: palette.white,
+      background: palette.red,
     },
     checked: palette.lightBlue,
     hover: palette.neutralDark,
