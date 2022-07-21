@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { ALPHABET, isAnswerChecked, isAnswerCorrect, isAnswerIncorrect } from '../utils';
 import { Answer as AnswerType, ChosenAnswer, ID } from '../types';
 import { Content } from './Content';
+import { SimpleFeedback } from './Feedback';
 
 export interface AnswerProps {
   answer: AnswerType;
@@ -18,9 +19,9 @@ export interface AnswerProps {
   onKeyPress?: () => void;
   answered_count?: number;
   correctIncorrectIcon?: ReactNode,
-  feedback?: ReactNode;
   radioBox?: ReactNode;
   contentRenderer?: JSX.Element;
+  show_all_feedback: boolean;
 }
 
 export const Answer = (props: AnswerProps) => {
@@ -36,11 +37,11 @@ export const Answer = (props: AnswerProps) => {
     incorrectAnswerId,
     hasCorrectAnswer,
     answered_count,
-    feedback,
-    contentRenderer
+    contentRenderer,
+    show_all_feedback
   } = props;
 
-  let body, selectedCount;
+  let body, feedback, selectedCount;
 
   const isChecked = isAnswerChecked(answer, chosenAnswer);
   const isCorrect = isAnswerCorrect(answer, correctAnswerId);
@@ -90,6 +91,14 @@ export const Answer = (props: AnswerProps) => {
     );
   }
 
+  if (show_all_feedback && answer.feedback_html) {
+    feedback = (
+      <SimpleFeedback key="question-mc-feedback" contentRenderer={contentRenderer}>
+        {answer.feedback_html}
+      </SimpleFeedback>
+    );
+  }
+
   if (type === 'teacher-review') {
     let percent = 0;
     if (answer.selected_count && answered_count) {
@@ -114,9 +123,7 @@ export const Answer = (props: AnswerProps) => {
         </div>
 
         <div className="answer-answer">
-          <div className="answer-content">
-            <Content className="answer-content" component={contentRenderer} html={answer.content_html} />
-          </div>
+          <Content className="answer-content" component={contentRenderer} html={answer.content_html} />
           {feedback}
         </div>
       </div>

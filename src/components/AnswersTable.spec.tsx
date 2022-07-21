@@ -14,16 +14,17 @@ describe('AnswersTable', () => {
         collaborator_solutions: [],
         formats: [],
         stimulus_html: '',
+
+        answers: [{
+          id: '1',
+          correctness: undefined,
+          content_html: 'A'
+        }, {
+            id: '2',
+            correctness: undefined,
+            content_html: 'B'
+        }],
       },
-      answers: [{
-        id: '1',
-        correctness: undefined,
-        content_html: 'A'
-      }, {
-        id: '2',
-        correctness: undefined,
-        content_html: 'B'
-      }],
       type: 'student',
       answer_id: '',
       correct_answer_id: '',
@@ -40,7 +41,7 @@ describe('AnswersTable', () => {
   });
 
   it('matches tutor teacher-preview snapshot', () => {
-    props.answers.forEach((answer, i) => answer.content_html = answerContent[i]);
+    props.question.answers.forEach((answer, i) => answer.content_html = answerContent[i]);
     const tree = renderer.create(
       <AnswersTable {...props} type="teacher-preview" onKeyPress={() => null} />
     ).toJSON();

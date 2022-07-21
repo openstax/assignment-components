@@ -25,6 +25,7 @@ describe('Answer', () => {
       correctAnswerId: 2,
       incorrectAnswerId: 0,
       answered_count: 10,
+      show_all_feedback: false
     };
   });
 
@@ -46,9 +47,10 @@ describe('Answer', () => {
   });
 
   it('renders feedback', () => {
-    const feedback = <div>Insightful commentary</div>;
+    props.show_all_feedback = true;
+    props.answer.feedback_html = '<div>Insightful commentary</div>';
     const tree = renderer.create(
-      <Answer {...props} feedback={feedback} />
+      <Answer {...props} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

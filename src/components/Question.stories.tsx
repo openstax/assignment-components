@@ -7,16 +7,16 @@ const props: QuestionProps = {
     collaborator_solutions: [],
     formats: [],
     stimulus_html: '',
+    answers: [{
+      id: '1',
+      correctness: undefined,
+      content_html: 'True'
+    }, {
+      id: '2',
+      correctness: undefined,
+      content_html: 'False'
+    }],
   },
-  answers: [{
-    id: '1',
-    correctness: undefined,
-    content_html: 'True'
-  }, {
-    id: '2',
-    correctness: undefined,
-    content_html: 'False'
-  }],
   task: {
     is_deleted: false,
     type: 'homework'

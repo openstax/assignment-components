@@ -236,6 +236,7 @@ export interface QuestionProps {
   context: string;
   correct_answer_feedback_html?: string;
   answers: Answer[];
+  contentRenderer?: JSX.Element;
 }
 
 export const Question = (props: QuestionProps) => {

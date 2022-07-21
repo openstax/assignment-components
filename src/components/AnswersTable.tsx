@@ -5,7 +5,6 @@ import { Feedback } from "./Feedback";
 
 export interface AnswersTableProps {
   question: Question;
-  answers: AnswerType[];
   type?: AnswerDisplayType;
   answer_id: ID;
   correct_answer_id?: ID;
@@ -20,13 +19,14 @@ export interface AnswersTableProps {
   onChangeAttempt: () => void;
   choicesEnabled: boolean;
   onKeyPress?: () => void;
+  contentRenderer?: JSX.Element;
 }
 
 export const AnswersTable = (props: AnswersTableProps) => {
   let idCounter = 0;
 
   const {
-    question, answers, hideAnswers, type = defaultAnswerType, answered_count, choicesEnabled, correct_answer_id,
+    question, hideAnswers, type = defaultAnswerType, answered_count, choicesEnabled, correct_answer_id,
     incorrectAnswerId, answer_id, feedback_html, correct_answer_feedback_html,
     show_all_feedback, hasCorrectAnswer, onChangeAnswer, onKeyPress
   } = props;
@@ -35,7 +35,7 @@ export const AnswersTable = (props: AnswersTableProps) => {
   const { id } = question;
 
   const feedback: { index: number, html: string }[] = [];
-  const instructions = '';
+  const instructions = undefined;
 
   const chosenAnswer = [answer_id];
 
@@ -53,7 +53,7 @@ export const AnswersTable = (props: AnswersTableProps) => {
     onKeyPress
   };
 
-  const answersHtml = answers.map((answer, i) => {
+  const answersHtml = question.answers.map((answer, i) => {
     const additionalProps: { answer: AnswerType, iter: number, key: string }
       = { answer, iter: i, key: `${questionAnswerProps.qid}-option-${i}` };
     const answerProps = Object.assign({}, additionalProps, questionAnswerProps);
@@ -72,7 +72,7 @@ export const AnswersTable = (props: AnswersTableProps) => {
   feedback.forEach((item, i) => {
     const spliceIndex = item.index + i + 1;
     answersHtml.splice(spliceIndex, 0, (
-      <Feedback key={spliceIndex}>
+      <Feedback key={spliceIndex} contentRenderer={props.contentRenderer}>
         {item.html}
       </Feedback>
     ));

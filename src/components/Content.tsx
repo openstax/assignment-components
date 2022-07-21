@@ -3,7 +3,7 @@ import React from "react";
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 type ComponentType = keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
 
-interface ContentProps<T extends ComponentType | undefined> {
+export interface ContentProps<T extends ComponentType | undefined> {
   className?: string;
   component?: T extends undefined ? undefined :
     T extends ComponentType ? React.ReactComponentElement<T>:

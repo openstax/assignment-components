@@ -25,11 +25,11 @@ const Feedback = (props: FeedbackProps) => {
   return (
     <aside className={wrapperClasses}>
       <div className="arrow" aria-label="Answer Feedback" />
-      <SimpleFeedback>
+      <SimpleFeedback {...props}>
         {props.children}
       </SimpleFeedback>
     </aside>
   );
 };
 
-export { Feedback };
+export { Feedback, SimpleFeedback };

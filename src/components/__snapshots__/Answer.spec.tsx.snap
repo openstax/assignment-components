@@ -353,21 +353,17 @@ exports[`Answer renders teacher review 1`] = `
       >
         <div
           className="answer-content"
-        >
-          <div
-            className="answer-content"
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "<ol>
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<ol>
   <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
   <li>objects are too small to be seen with the naked eye, and</li>
   <li>there is the involvement of only a weak gravitational field</li>
 </ol>
 ",
-              }
             }
-          />
-        </div>
+          }
+        />
       </div>
     </div>
   </section>

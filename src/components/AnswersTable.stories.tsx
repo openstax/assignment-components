@@ -6,19 +6,20 @@ const props: AnswersTableProps = {
     collaborator_solutions: [],
     formats: [],
     stimulus_html: '',
+    answers: [
+      {
+        id: '1',
+        correctness: '1.0',
+        isCorrect: false,
+        content_html: 'A'
+      }, {
+        id: '2',
+        correctness: '1.0',
+        isCorrect: false,
+        content_html: 'B'
+      },
+    ],
   },
-  answers: [{
-    id: '1',
-    correctness: '1.0',
-    isCorrect: false,
-    content_html: 'A'
-  }, {
-    id: '2',
-    correctness: '1.0',
-    isCorrect: false,
-    content_html: 'B'
-  }],
-  type: 'student',
   answer_id: '',
   feedback_html: '',
   correct_answer_feedback_html: '',
