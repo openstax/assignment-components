@@ -125,7 +125,7 @@ export const mixins = {
   `,
   answerCorrectText: () => css`
     content: 'correct answer';
-    color: ${colors.answer.label.color}
+    color: ${colors.answer.label.color};
     margin-left: calc(-1.25 * ${layouts.answer.bubbleSize});
     width: calc(1.25 * ${layouts.answer.bubbleSize});
     text-align: center;

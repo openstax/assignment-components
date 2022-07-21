@@ -200,11 +200,11 @@ const StyledQuestion = styled.div`
         }
         &::before {
           top: 0;
-          border-bottom-color: ${colors.answer.feedback.popover.borderColor}; //popover-arrow-outer-color;
+          border-bottom-color: ${colors.answer.feedback.popover.borderColor};
         }
         &::after {
           top: ${layouts.answer.feedback.popover.borderWidth};
-          border-bottom-color: $${colors.palette.white};
+          border-bottom-color: ${colors.palette.white};
         }
       }
 
