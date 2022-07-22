@@ -104,4 +104,11 @@ describe('Question', () => {
     );
     expect(tree.root.findByProps({ 'data-test-id': 'question' }).props['className']).not.toContain('has-correct-answer');
   });
+
+  it('defaults QuestionHtml html', () => {
+    const tree = renderer.create(
+      <Question {...props} context={undefined} />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

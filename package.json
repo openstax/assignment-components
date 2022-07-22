@@ -13,7 +13,7 @@
   "unpkg": "./dist/index.umd.js",
   "scripts": {
     "build": "microbundle",
-    "dev": "microbundle watch",
+    "dev": "microbundle watch --no-compress",
     "test": "jest --coverage .",
     "lint": "eslint src/*ts"
   },

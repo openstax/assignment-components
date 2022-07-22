@@ -241,7 +241,7 @@ export interface QuestionProps {
   className: string;
   questionNumber: number;
   displaySolution: boolean;
-  context: string;
+  context?: string;
   correct_answer_feedback_html?: string;
   contentRenderer?: JSX.Element;
   feedback_html: string;
@@ -320,19 +320,19 @@ export const Question = (props: QuestionProps) => {
 }
 
 interface QuestionHtmlProps {
-  html: string;
+  html?: string;
   type: string;
   hidden: boolean
   questionNumber?: QuestionProps['questionNumber'];
 }
 
 const QuestionHtml = (props: QuestionHtmlProps) => {
-  const { html, type, hidden, questionNumber } = props;
+  const { html = '', type, hidden, questionNumber } = props;
   if (hidden === true || !(html.length > 0)) { return null; }
 
   return (
     <Content
-      html={props.html}
+      html={html}
       data-question-number={questionNumber}
       className={`question-${type}`}
       block={true}
