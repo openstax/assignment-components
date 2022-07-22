@@ -41,6 +41,9 @@
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "src/test",
+    "**/*.spec.ts*",
+    "**/*.stories.tsx"
   ]
 }

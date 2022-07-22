@@ -12,8 +12,8 @@
   "module": "./dist/index.module.js",
   "unpkg": "./dist/index.umd.js",
   "scripts": {
-    "build": "microbundle",
-    "dev": "microbundle watch",
+    "build": "microbundle src/index.ts",
+    "dev": "microbundle watch --no-compress src/index.ts",
     "test": "jest --coverage .",
     "lint": "eslint src/*ts"
   },
