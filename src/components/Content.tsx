@@ -13,10 +13,14 @@ export interface ContentProps<T extends ComponentType | undefined> {
 }
 
 export const Content = (<T extends ComponentType | undefined>(
-  {html, component, ...props}: ContentProps<T>
+  {html, component, block = false, ...props}: ContentProps<T>
 ) => {
   if (component !== undefined) {
     return React.cloneElement(component, {html, ...props});
   }
-  return <div dangerouslySetInnerHTML={{ __html: html }} {...props} />;
+  if (block) {
+    return <div dangerouslySetInnerHTML={{ __html: html }} {...props} />;
+  } else {
+    return <span dangerouslySetInnerHTML={{ __html: html }} {...props} />;
+  }
 });
