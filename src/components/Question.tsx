@@ -168,9 +168,7 @@ const StyledQuestion = styled.div`
     }
 
     .question-feedback {
-      color: ${colors.answer.label.color};
-
-      //@include reset-text(); @TODO what is this?
+      ${mixins.resetText()}
 
       z-index: 1;
       position: relative;
@@ -181,7 +179,7 @@ const StyledQuestion = styled.div`
       max-width: ${layouts.answer.feedback.popover.maxWidth};
       margin: calc(${layouts.answer.feedback.arrow.height} - 5px) 0 ${layouts.answer.horizontalSpacing} calc(-1 * (2 * ${layouts.answer.horizontalSpacing}));
       box-shadow: 10px 0px 10px rgba(0, 0, 0, .25);
-      color: $openstax-neutral;
+      color: ${colors.palette.neutral};
       font-size: 1.4rem;
       font-style: italic;
 
