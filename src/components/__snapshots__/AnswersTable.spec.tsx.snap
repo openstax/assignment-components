@@ -34,7 +34,7 @@ exports[`AnswersTable matches tutor teacher-preview snapshot 1`] = `
         <div
           className="answer-answer"
         >
-          <div
+          <span
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {
@@ -81,7 +81,7 @@ exports[`AnswersTable matches tutor teacher-preview snapshot 1`] = `
         <div
           className="answer-answer"
         >
-          <div
+          <span
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {
@@ -131,7 +131,7 @@ exports[`AnswersTable renders correct answer feedback 1`] = `
         <div
           className="answer-answer"
         >
-          <div
+          <span
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {
@@ -152,7 +152,6 @@ exports[`AnswersTable renders correct answer feedback 1`] = `
     />
     <aside>
       <div
-        block={true}
         className="question-feedback-content has-html"
         dangerouslySetInnerHTML={
           Object {
@@ -188,7 +187,7 @@ exports[`AnswersTable renders correct answer feedback 1`] = `
         <div
           className="answer-answer"
         >
-          <div
+          <span
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {
@@ -243,7 +242,7 @@ exports[`AnswersTable renders incorrect answer feedback 1`] = `
         <div
           className="answer-answer"
         >
-          <div
+          <span
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {
@@ -264,7 +263,6 @@ exports[`AnswersTable renders incorrect answer feedback 1`] = `
     />
     <aside>
       <div
-        block={true}
         className="question-feedback-content has-html"
         dangerouslySetInnerHTML={
           Object {
@@ -310,7 +308,7 @@ exports[`AnswersTable renders incorrect answer feedback 1`] = `
         <div
           className="answer-answer"
         >
-          <div
+          <span
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {

@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import { mixins, colors, layouts, transitions } from '../theme';
 import { AnswersTable } from './AnswersTable';
-import cn from 'classnames';
+import classnames from 'classnames';
 import { ID, Question as QuestionType } from 'src/types';
+import { ReactNode } from 'react';
+import { Content } from './Content';
 
 const StyledQuestion = styled.div`
 &.openstax-question {
+  font-size: 2rem;
+
   .detailed-solution {
     margin-bottom: 1rem;
     .header {
@@ -213,6 +217,12 @@ const StyledQuestion = styled.div`
       }
     }
   }
+
+  .openstax-answer {
+    border-top: 1px solid #d5d5d5;
+    margin: 10px 0;
+    padding: 10px 0;
+  }
 }
 `;
 
@@ -222,12 +232,12 @@ export interface QuestionProps {
   task?: {
     is_deleted: boolean;
     type?: 'homework'
-  },
+  } | null,
   correct_answer_id: ID;
   incorrectAnswerId: ID;
   hideAnswers: boolean;
   hidePreambles: boolean,
-  exercise_uid: string;
+  exercise_uid?: string;
   displayFormats: boolean,
   processHtmlAndMath: boolean;
   className: string;
@@ -239,6 +249,7 @@ export interface QuestionProps {
   feedback_html: string;
   onChange: () => void;
   show_all_feedback?: boolean;
+  children?: ReactNode;
 }
 
 export const Question = (props: QuestionProps) => {
@@ -250,21 +261,92 @@ export const Question = (props: QuestionProps) => {
 
   const { stem_html, collaborator_solutions, formats, stimulus_html } = question;
 
-  console.log(stem_html, collaborator_solutions, formats, stimulus_html, exercise_uid, solution, exerciseUid, className, questionNumber, context, hidePreambles);
-
   const hasCorrectAnswer = !!correct_answer_id;
   const hasIncorrectAnswer = !!incorrectAnswerId;
-  const classes = cn('openstax-question', props.className, {
-    'has-correct-answer': hasCorrectAnswer && !((task != null ? task.is_deleted : undefined) && ((task != null ? task.type : undefined) === 'homework')),
+
+  const taskIsDeleted = (task != null ? task.is_deleted : undefined)
+  const taskIsHomework = ((task != null ? task.type : undefined) === 'homework');
+
+  const classes = classnames('openstax-question', className, {
+    'has-correct-answer': hasCorrectAnswer && !(taskIsDeleted && taskIsHomework),
     'has-incorrect-answer': hasIncorrectAnswer,
   });
 
+  const hasSolution = () => {
+    const { question, displaySolution } = props;
+    const { collaborator_solutions } = question;
+
+    return (
+      displaySolution && collaborator_solutions.find(s => s['content_html'] !== undefined)
+    );
+  };
+
+  if (exercise_uid != null) {
+    exerciseUid = (
+      <div className="exercise-uid">
+        {exercise_uid}
+      </div>
+    );
+  }
+
+  if (hasSolution()) {
+    solution =
+      <div className="detailed-solution">
+        <div className="header">
+          Detailed solution:
+        </div>
+        <Content
+          className="solution"
+          block={true}
+          html={collaborator_solutions.map(s => s['content_html']).join('')} />
+      </div>;
+  }
+
   return (
-    <StyledQuestion className={classes}>
+    <StyledQuestion className={classes} data-question-number={questionNumber} data-test-id="question">
+      <QuestionHtml type="context" html={context} hidden={hidePreambles} />
+      <QuestionHtml type="stimulus" html={stimulus_html} hidden={hidePreambles} />
+      <QuestionHtml type="stem" html={stem_html} hidden={hidePreambles} questionNumber={questionNumber} />
+      {props.children}
+
       <AnswersTable
         {...props}
         onChangeAnswer={props.onChange}
         hasCorrectAnswer={hasCorrectAnswer} />
+
+      {solution}
+      {props.displayFormats ? <FormatsListing formats={formats} /> : undefined}
+      {exerciseUid}
     </StyledQuestion>
   );
 }
+
+interface QuestionHtmlProps {
+  html: string;
+  type: string;
+  hidden: boolean
+  questionNumber?: QuestionProps['questionNumber'];
+}
+
+const QuestionHtml = (props: QuestionHtmlProps) => {
+  const { html, type, hidden, questionNumber } = props;
+  if (hidden === true || !(html.length > 0)) { return null; }
+
+  return (
+    <Content
+      html={props.html}
+      data-question-number={questionNumber}
+      className={`question-${type}`}
+      block={true}
+    />
+  );
+};
+
+const FormatsListing = ({ formats = [] }: { formats: QuestionType['formats'] }) => {
+  return (
+    <div className="formats-listing">
+      <div className="header">Formats:</div>
+      {formats.map((format, i) => <span key={i}>{format}</span>)}
+    </div>
+  );
+};

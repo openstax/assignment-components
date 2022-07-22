@@ -3,7 +3,7 @@ import { Question, QuestionProps } from './Question';
 const props: QuestionProps = {
   question: {
     id: '1',
-    stem_html: 'stem html',
+    stem_html: 'Is this a question?',
     collaborator_solutions: [],
     formats: [],
     stimulus_html: '',
@@ -34,7 +34,7 @@ const props: QuestionProps = {
   context: '',
   feedback_html: '',
   onChange: () => null,
-  correct_answer_feedback_html: '<b>Feedback</b>',
+  correct_answer_feedback_html: 'Feedback',
 };
 
 export const Default = () => <Question {...props} />;

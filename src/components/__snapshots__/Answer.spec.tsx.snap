@@ -38,7 +38,7 @@ exports[`Answer matches snapshot 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -95,7 +95,7 @@ exports[`Answer renders a checked answer 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -142,7 +142,7 @@ exports[`Answer renders a correct answer 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -189,7 +189,7 @@ exports[`Answer renders an incorrect answer 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -246,7 +246,7 @@ exports[`Answer renders feedback 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -261,7 +261,6 @@ exports[`Answer renders feedback 1`] = `
         />
         <aside>
           <div
-            block={true}
             className="question-feedback-content has-html"
             dangerouslySetInnerHTML={
               Object {
@@ -311,7 +310,7 @@ exports[`Answer renders teacher preview 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -359,7 +358,7 @@ exports[`Answer renders teacher review 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {

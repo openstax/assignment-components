@@ -1,8 +1,12 @@
+type CollaboratorSolution = {
+  content_html: string;
+};
+
 export type Question = { // @TODO Check these types against models
   id: ID;
   stem_html: string;
-  collaborator_solutions: [];
-  formats: [];
+  collaborator_solutions: CollaboratorSolution[];
+  formats?: string[];
   stimulus_html: string;
   answers: Answer[];
 };
