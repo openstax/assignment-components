@@ -88,9 +88,8 @@ describe('Question', () => {
     );
     expect(tree.root.findByProps({ 'data-test-id': 'question' }).props['className']).toContain('has-correct-answer');
 
-    props.task!.is_deleted = true;
     tree = renderer.create(
-      <Question {...props} correct_answer_id='1' />
+      <Question {...props} task={{ is_deleted: true, type: 'homework' }} correct_answer_id='1' />
     );
     expect(tree.root.findByProps({ 'data-test-id': 'question' }).props['className']).not.toContain('has-correct-answer');
 
