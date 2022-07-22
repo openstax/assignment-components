@@ -135,7 +135,7 @@ export const Answer = (props: AnswerProps) => {
         {selectedCount}
         {radioBox}
         <label
-          onKeyPress={onKeyPress} // @TODO: Change to onKeyDown?
+          onKeyPress={onKeyPress}
           htmlFor={`${qid}-option-${iter}`}
           className="answer-label">
           <span className="answer-letter-wrapper">

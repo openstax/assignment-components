@@ -2,7 +2,7 @@ type CollaboratorSolution = {
   content_html: string;
 };
 
-export type Question = { // @TODO Check these types against models
+export type Question = {
   id: ID;
   stem_html: string;
   collaborator_solutions: CollaboratorSolution[];
