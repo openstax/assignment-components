@@ -1,46 +1,28 @@
 import cn from 'classnames';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { ALPHABET, isAnswerChecked, isAnswerCorrect, isAnswerIncorrect } from '../utils';
-import { answerType, chosenAnswerType, idType } from '../types';
+import { Answer as AnswerType, ChosenAnswer, ID } from '../types';
+import { Content } from './Content';
+import { SimpleFeedback } from './Feedback';
 
 export interface AnswerProps {
-  answer: answerType;
+  answer: AnswerType;
   iter: number;
-  qid: idType;
+  qid: ID;
   type: 'teacher-review' | 'teacher-preview' | 'student' | 'student-mpp';
-  hasCorrectAnswer: boolean;
+  hasCorrectAnswer?: boolean;
   onChangeAnswer: () => void;
   disabled: boolean;
-  chosenAnswer: chosenAnswerType;
-  correctAnswerId?: idType;
-  incorrectAnswerId?: idType;
-  onKeyPress: () => void;
+  chosenAnswer: ChosenAnswer;
+  correctAnswerId?: ID;
+  incorrectAnswerId?: ID;
+  onKeyPress?: () => void;
   answered_count?: number;
   correctIncorrectIcon?: ReactNode,
-  feedback?: ReactNode;
   radioBox?: ReactNode;
   contentRenderer?: JSX.Element;
+  show_all_feedback: boolean;
 }
-
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-type ComponentType = keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
-
-interface ContentRendererProps<T extends ComponentType | undefined> {
-  className?: string;
-  component?: T extends undefined ? undefined :
-    T extends ComponentType ? React.ReactComponentElement<T>:
-    never;
-  html: string;
-}
-
-const AnswerContent = (<T extends ComponentType | undefined>(
-  {html, component, ...props}: ContentRendererProps<T>
-) => {
-  if (component !== undefined) {
-    return React.cloneElement(component, {html, ...props});
-  }
-  return <div dangerouslySetInnerHTML={{ __html: html }} {...props} />;
-});
 
 export const Answer = (props: AnswerProps) => {
   const {
@@ -55,11 +37,11 @@ export const Answer = (props: AnswerProps) => {
     incorrectAnswerId,
     hasCorrectAnswer,
     answered_count,
-    feedback,
-    contentRenderer
+    contentRenderer,
+    show_all_feedback
   } = props;
 
-  let body, selectedCount;
+  let body, feedback, selectedCount;
 
   const isChecked = isAnswerChecked(answer, chosenAnswer);
   const isCorrect = isAnswerCorrect(answer, correctAnswerId);
@@ -109,6 +91,14 @@ export const Answer = (props: AnswerProps) => {
     );
   }
 
+  if (show_all_feedback && answer.feedback_html) {
+    feedback = (
+      <SimpleFeedback key="question-mc-feedback" contentRenderer={contentRenderer}>
+        {answer.feedback_html}
+      </SimpleFeedback>
+    );
+  }
+
   if (type === 'teacher-review') {
     let percent = 0;
     if (answer.selected_count && answered_count) {
@@ -133,9 +123,7 @@ export const Answer = (props: AnswerProps) => {
         </div>
 
         <div className="answer-answer">
-          <div className="answer-content">
-            <AnswerContent className="answer-content" component={contentRenderer} html={answer.content_html} />
-          </div>
+          <Content className="answer-content" component={contentRenderer} html={answer.content_html} />
           {feedback}
         </div>
       </div>
@@ -162,7 +150,7 @@ export const Answer = (props: AnswerProps) => {
             </button>
           </span>
           <div className="answer-answer">
-            <AnswerContent className="answer-content" component={contentRenderer} html={answer.content_html} />
+            <Content className="answer-content" component={contentRenderer} html={answer.content_html} />
             {feedback}
           </div>
         </label>

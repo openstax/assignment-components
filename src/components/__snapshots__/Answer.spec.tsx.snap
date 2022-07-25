@@ -38,7 +38,7 @@ exports[`Answer matches snapshot 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -95,7 +95,7 @@ exports[`Answer renders a checked answer 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -142,7 +142,7 @@ exports[`Answer renders a correct answer 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -189,7 +189,7 @@ exports[`Answer renders an incorrect answer 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -246,7 +246,7 @@ exports[`Answer renders feedback 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -259,9 +259,16 @@ exports[`Answer renders feedback 1`] = `
             }
           }
         />
-        <div>
-          Insightful commentary
-        </div>
+        <aside>
+          <div
+            className="question-feedback-content has-html"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<div>Insightful commentary</div>",
+              }
+            }
+          />
+        </aside>
       </div>
     </label>
   </section>
@@ -303,7 +310,7 @@ exports[`Answer renders teacher preview 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
           dangerouslySetInnerHTML={
             Object {
@@ -351,23 +358,19 @@ exports[`Answer renders teacher review 1`] = `
       <div
         className="answer-answer"
       >
-        <div
+        <span
           className="answer-content"
-        >
-          <div
-            className="answer-content"
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "<ol>
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<ol>
   <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
   <li>objects are too small to be seen with the naked eye, and</li>
   <li>there is the involvement of only a weak gravitational field</li>
 </ol>
 ",
-              }
             }
-          />
-        </div>
+          }
+        />
       </div>
     </div>
   </section>

@@ -1,10 +1,10 @@
-import { answerType, chosenAnswerType, idType } from '../src/types';
+import { Answer, ChosenAnswer, ID } from '../src/types';
 
 export const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 
 const MAX_CORRECTNESS = '1.0';
 
-export const isAnswerCorrect = function(answer: answerType, correctAnswerId?: idType) {
+export const isAnswerCorrect = function(answer: Answer, correctAnswerId?: ID) {
   // if answer does not have an id, check the isCorrect property.
   if (!(answer.id || correctAnswerId)) {
     return answer.isCorrect;
@@ -15,10 +15,10 @@ export const isAnswerCorrect = function(answer: answerType, correctAnswerId?: id
   return isCorrect;
 };
 
-export const isAnswerIncorrect = function(answer: answerType, incorrectAnswerId?: idType) {
+export const isAnswerIncorrect = function(answer: Answer, incorrectAnswerId?: ID) {
   // Allow multiple attempts to show incorrectness without the correct_answer_id
   return answer.id === incorrectAnswerId;
 };
 
-export const isAnswerChecked = (answer: answerType, chosenAnswer?: chosenAnswerType) =>
+export const isAnswerChecked = (answer: Answer, chosenAnswer?: ChosenAnswer) =>
   Boolean((chosenAnswer || []).find( a => a == answer.id));

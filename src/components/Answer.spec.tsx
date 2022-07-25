@@ -1,14 +1,9 @@
 import { Answer, AnswerProps } from './Answer';
 import renderer from 'react-test-renderer';
+import { answerContent } from '../test/fixtures';
 
 describe('Answer', () => {
   let props: AnswerProps;
-  const answerContent = `<ol>
-  <li>matter is moving at speeds of less than roughly 1% the speed of light,</li>
-  <li>objects are too small to be seen with the naked eye, and</li>
-  <li>there is the involvement of only a weak gravitational field</li>
-</ol>
-`;
 
   beforeEach(() => {
     props = {
@@ -18,7 +13,7 @@ describe('Answer', () => {
         id: 1,
         correctness: null,
         isCorrect: true,
-        content_html: answerContent,
+        content_html: answerContent[0],
         selected_count: 5
       },
       onChangeAnswer: () => jest.fn(),
@@ -30,6 +25,7 @@ describe('Answer', () => {
       correctAnswerId: 2,
       incorrectAnswerId: 0,
       answered_count: 10,
+      show_all_feedback: false
     };
   });
 
@@ -51,9 +47,10 @@ describe('Answer', () => {
   });
 
   it('renders feedback', () => {
-    const feedback = <div>Insightful commentary</div>;
+    props.show_all_feedback = true;
+    props.answer.feedback_html = '<div>Insightful commentary</div>';
     const tree = renderer.create(
-      <Answer {...props} feedback={feedback} />
+      <Answer {...props} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -86,11 +83,10 @@ describe('Answer', () => {
     expect(tree).toMatchSnapshot();
   });
 
-
   it('renders teacher preview', () => {
     props = {...props, correctAnswerId: props.answer.id, correctIncorrectIcon: <span>Iconic</span>};
     const tree = renderer.create(
-      <Answer {...props} type='teacher-preview'  />
+      <Answer {...props} type='teacher-preview' />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
