@@ -18,11 +18,11 @@ describe('AnswersTable', () => {
         answers: [{
           id: '1',
           correctness: undefined,
-          content_html: 'A'
+          content_html: 'True'
         }, {
             id: '2',
             correctness: undefined,
-            content_html: 'B'
+            content_html: 'False'
         }],
       },
       type: 'student',

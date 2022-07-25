@@ -11,12 +11,12 @@ const props: AnswersTableProps = {
         id: '1',
         correctness: '1.0',
         isCorrect: false,
-        content_html: 'A'
+        content_html: 'True'
       }, {
         id: '2',
         correctness: '1.0',
         isCorrect: false,
-        content_html: 'B'
+        content_html: 'False'
       },
     ],
   },

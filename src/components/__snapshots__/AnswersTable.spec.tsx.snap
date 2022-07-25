@@ -135,7 +135,7 @@ exports[`AnswersTable renders correct answer feedback 1`] = `
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {
-                "__html": "A",
+                "__html": "True",
               }
             }
           />
@@ -191,7 +191,7 @@ exports[`AnswersTable renders correct answer feedback 1`] = `
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {
-                "__html": "B",
+                "__html": "False",
               }
             }
           />
@@ -246,7 +246,7 @@ exports[`AnswersTable renders incorrect answer feedback 1`] = `
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {
-                "__html": "A",
+                "__html": "True",
               }
             }
           />
@@ -312,7 +312,7 @@ exports[`AnswersTable renders incorrect answer feedback 1`] = `
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {
-                "__html": "B",
+                "__html": "False",
               }
             }
           />
@@ -367,7 +367,7 @@ exports[`AnswersTable sorts by given ID order 1`] = `
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {
-                "__html": "B",
+                "__html": "False",
               }
             }
           />
@@ -415,7 +415,7 @@ exports[`AnswersTable sorts by given ID order 1`] = `
             className="answer-content"
             dangerouslySetInnerHTML={
               Object {
-                "__html": "A",
+                "__html": "True",
               }
             }
           />
