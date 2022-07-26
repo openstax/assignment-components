@@ -14,7 +14,7 @@ export interface AnswerProps {
   onChangeAnswer: () => void;
   disabled: boolean;
   chosenAnswer: ChosenAnswer;
-  correctAnswerId?: ID;
+  correctAnswerId?: ID | null;
   incorrectAnswerId?: ID;
   onKeyPress?: () => void;
   answered_count?: number;

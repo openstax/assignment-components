@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 
 const palette = {
   red: "rgb(202, 32, 38)",
@@ -20,6 +20,7 @@ const palette = {
   neutralDark: "rgb(95, 97, 99)", // dark gray
   neutralDarker: "rgb(66, 66, 66)", // very dark gray
   black: "rgb(0, 0, 0)",
+  pale: "#d5d5d5",
 };
 
 export const colors = {
@@ -77,9 +78,25 @@ export const layouts = {
   },
 };
 
+export const BREAKPOINTS = {
+    mobile: 600,
+    tablet: 999,
+    desktop: 1000,
+};
+
+const mobileQuery = `(max-width: ${BREAKPOINTS.mobile}px)`;
+const desktopQuery = `(min-width: ${BREAKPOINTS.desktop}px)`;
 export const breakpoints = {
-  mobile: "600px",
-  tabletCollapse: "999px",
+  mobile: (style: FlattenSimpleInterpolation) => css`
+    @media screen and ${mobileQuery} {
+      ${style}
+    }
+  `,
+  desktop: (style: FlattenSimpleInterpolation) => css`
+    @media screen and ${desktopQuery} {
+      ${style}
+    }
+  `,
 };
 
 export const transitions = {
@@ -143,11 +160,11 @@ export const mixins = {
     }
     &::before {
      ${mixins.answerCorrectText()}
-      @media screen and (max-width: ${breakpoints.tabletCollapse}) {
+      @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
         display: none;
       }
     }
-    @media screen and (max-width:  ${breakpoints.tabletCollapse}) {
+    @media screen and (max-width:  ${BREAKPOINTS.tablet}px) {
       .answer-letter-wrapper {
         display: flex;
         flex-direction: column;

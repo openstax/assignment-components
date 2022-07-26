@@ -4,7 +4,7 @@ export const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 
 const MAX_CORRECTNESS = '1.0';
 
-export const isAnswerCorrect = function(answer: Answer, correctAnswerId?: ID) {
+export const isAnswerCorrect = function(answer: Answer, correctAnswerId?: ID | null) {
   // if answer does not have an id, check the isCorrect property.
   if (!(answer.id || correctAnswerId)) {
     return answer.isCorrect;

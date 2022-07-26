@@ -27,7 +27,6 @@ const props: QuestionProps = {
   hidePreambles: false,
   exercise_uid: '',
   displayFormats: false,
-  processHtmlAndMath: false,
   className: '',
   questionNumber: 1,
   displaySolution: false,
