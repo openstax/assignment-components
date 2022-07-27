@@ -32,14 +32,13 @@ describe('Question', () => {
       hideAnswers: false,
       hidePreambles: false,
       displayFormats: false,
-      processHtmlAndMath: false,
       className: '',
       questionNumber: 1,
       displaySolution: false,
       context: '',
       feedback_html: '',
       onChange: () => null,
-      correct_answer_feedback_html: 'Feedback',
+      correct_answer_feedback_html: 'Feedback'
     }
   });
 

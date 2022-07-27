@@ -79,19 +79,13 @@ export const layouts = {
 };
 
 export const BREAKPOINTS = {
-    mobile: 600,
-    tablet: 999,
-    desktop: 1000,
+  mobile: 600,
+  tablet: 999,
+  desktop: 1000,
 };
 
-const mobileQuery = `(max-width: ${BREAKPOINTS.mobile}px)`;
 const desktopQuery = `(min-width: ${BREAKPOINTS.desktop}px)`;
 export const breakpoints = {
-  mobile: (style: FlattenSimpleInterpolation) => css`
-    @media screen and ${mobileQuery} {
-      ${style}
-    }
-  `,
   desktop: (style: FlattenSimpleInterpolation) => css`
     @media screen and ${desktopQuery} {
       ${style}

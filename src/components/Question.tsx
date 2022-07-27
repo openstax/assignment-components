@@ -245,7 +245,7 @@ export interface QuestionProps {
   show_all_feedback?: boolean;
   children?: ReactNode;
   answerIdOrder?: ID[];
-  choicesEnabled: boolean;
+  choicesEnabled?: boolean;
 }
 
 export const Question = (props: QuestionProps) => {

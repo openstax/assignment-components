@@ -20,9 +20,9 @@ describe('AnswersTable', () => {
           correctness: undefined,
           content_html: 'True'
         }, {
-            id: '2',
-            correctness: undefined,
-            content_html: 'False'
+          id: '2',
+          correctness: undefined,
+          content_html: 'False'
         }],
       },
       type: 'student',

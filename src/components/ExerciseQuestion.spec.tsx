@@ -54,4 +54,95 @@ describe('ExerciseQuestion', () => {
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
+
+  it('renders all attempts remaining', () => {
+    const tree = renderer.create(
+      <ExerciseQuestion {...props}
+        hasMultipleAttempts={true}
+        choicesEnabled={true}
+        attempts_remaining={2}
+        attempt_number={0}
+      />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders some attempts remaining', () => {
+    const tree = renderer.create(
+      <ExerciseQuestion {...props}
+        hasMultipleAttempts={true}
+        choicesEnabled={true}
+        attempts_remaining={1}
+        attempt_number={1}
+        incorrectAnswerId='2'
+      />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders no attempts remaining', () => {
+    const tree = renderer.create(
+      <ExerciseQuestion {...props}
+        hasMultipleAttempts={true}
+        choicesEnabled={false}
+        attempts_remaining={0}
+        attempt_number={2}
+        incorrectAnswerId='2'
+      />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders Save button', () => {
+    const tree = renderer.create(
+      <ExerciseQuestion {...props}
+        choicesEnabled={true}
+        incorrectAnswerId='2'
+        canAnswer={true}
+        needsSaved={true}
+      />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders Re-submit button', () => {
+    const tree = renderer.create(
+      <ExerciseQuestion {...props}
+        choicesEnabled={true}
+        incorrectAnswerId='2'
+        canAnswer={true}
+        needsSaved={true}
+        attempt_number={1}
+      />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders continue button (unused?)', () => {
+    const tree = renderer.create(
+      <ExerciseQuestion {...props}
+        choicesEnabled={false}
+        incorrectAnswerId='2'
+        canAnswer={false}
+        canUpdateCurrentStep={true}
+      />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders detailed solution and published comments', () => {
+    const tree = renderer.create(
+      <ExerciseQuestion {...props}
+        choicesEnabled={false}
+        incorrectAnswerId='2'
+        correct_answer_id='1'
+        is_completed={true}
+        canAnswer={false}
+        needsSaved={false}
+        detailedSolution='A detailed solution'
+        published_comments='Teacher feedback'
+      />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

@@ -38,8 +38,7 @@ export interface ExerciseQuestionProps {
 const Button = styled.button`
 `;
 const AsyncButton = (props: any) => {
-  console.log(props);
-  return <Button />;
+  return <Button>{props.children}</Button>;
 }
 
 const AttemptsRemaining = ({ count }: { count: number }) => {
@@ -108,7 +107,7 @@ export const ExerciseQuestion = (props: ExerciseQuestionProps) => {
         className="step-card-body"
         hideAnswers={false}
         displayFormats={false}
-        displaySolution={displaySolution}
+    displaySolution={displaySolution}
       >
         <span>FreeResponseReview @TODO</span>
       </Question>
