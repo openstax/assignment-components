@@ -7,6 +7,7 @@ const props: QuestionProps = {
     collaborator_solutions: [],
     formats: [],
     stimulus_html: '',
+    is_answer_order_important: false,
     answers: [{
       id: '1',
       correctness: undefined,
