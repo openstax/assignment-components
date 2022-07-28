@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button isWaiting state matches snapshot 1`] = `
+<button
+  className="sc-bczRLJ dTkVjt"
+  disabled={true}
+>
+  Submitting...
+</button>
+`;
+
+exports[`Button matches snapshot 1`] = `
+<button
+  className="sc-bczRLJ dTkVjt"
+>
+  Click Me
+</button>
+`;
