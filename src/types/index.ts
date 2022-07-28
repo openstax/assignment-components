@@ -1,3 +1,8 @@
+export type Task = {
+  is_deleted: boolean;
+  type?: 'homework';
+};
+
 type CollaboratorSolution = {
   content_html: string;
 };
@@ -9,6 +14,7 @@ export type Question = {
   formats?: string[];
   stimulus_html: string;
   answers: Answer[];
+  is_answer_order_important: boolean;
 };
 
 export type Answer = {

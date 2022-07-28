@@ -7,7 +7,7 @@ export interface AnswersTableProps {
   question: Question;
   type?: AnswerDisplayType;
   answer_id?: ID;
-  correct_answer_id?: ID;
+  correct_answer_id?: ID | null;
   incorrectAnswerId?: ID;
   answerIdOrder?: ID[],
   feedback_html: string;

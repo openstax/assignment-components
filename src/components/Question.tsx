@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { mixins, colors, layouts, transitions } from '../theme';
 import { AnswersTable } from './AnswersTable';
 import classnames from 'classnames';
-import { ID, Question as QuestionType } from 'src/types';
+import { ID, Question as QuestionType, Task } from 'src/types';
 import { ReactNode } from 'react';
 import { Content } from './Content';
 
@@ -226,18 +226,14 @@ const StyledQuestion = styled.div`
 
 export interface QuestionProps {
   question: QuestionType,
-  answer_id?: string;
-  task?: {
-    is_deleted: boolean;
-    type?: 'homework'
-  } | null,
-  correct_answer_id: ID;
+  answer_id?: ID;
+  task?: Task | null,
+  correct_answer_id: ID | null;
   incorrectAnswerId: ID;
   hideAnswers: boolean;
-  hidePreambles: boolean,
+  hidePreambles?: boolean,
   exercise_uid?: string;
   displayFormats: boolean,
-  processHtmlAndMath: boolean;
   className: string;
   questionNumber: number;
   displaySolution: boolean;
@@ -248,6 +244,8 @@ export interface QuestionProps {
   onChange: () => void;
   show_all_feedback?: boolean;
   children?: ReactNode;
+  answerIdOrder?: ID[];
+  choicesEnabled?: boolean;
 }
 
 export const Question = (props: QuestionProps) => {
@@ -322,7 +320,7 @@ export const Question = (props: QuestionProps) => {
 interface QuestionHtmlProps {
   html?: string;
   type: string;
-  hidden: boolean
+  hidden: QuestionProps['hidePreambles'];
   questionNumber?: QuestionProps['questionNumber'];
 }
 
